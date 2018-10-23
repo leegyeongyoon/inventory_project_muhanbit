@@ -31,7 +31,7 @@
     <div class="w3-col s3">
       <a href="index.jsp?section=inventory_list.jsp" class="w3-button w3-block">재고 내역</a>
     </div>
-    
+    ㄴㄴㄴㄴㄴ
      <div class="w3-col s3">
     <div class="dropdown " align="center">
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: #f1f1f1; border-color: #f1f1f1; color: black; font-size: 15pt; ">백업 관리</button>
