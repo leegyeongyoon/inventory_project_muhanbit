@@ -57,9 +57,12 @@ table, th, tr, td {
 		<%
 				String searchlist = null;
 				String searchdate = null;
+				String searchselete = null;
 				
 				searchdate = request.getParameter("search");
-				switch (request.getParameter("second_search")) {
+				searchselete = request.getParameter("second_search");
+				
+				switch (searchselete){
 				case "1":
 					searchlist = "product_name";
 					break;
@@ -73,6 +76,7 @@ table, th, tr, td {
 					searchlist = "other_information";
 					break;
 				}
+				
 		            int totalCount = 0;
 		            //드라이버 로드
 		            Class.forName("com.mysql.jdbc.Driver");
@@ -82,6 +86,7 @@ table, th, tr, td {
 		            String totalsql = "SELECT count(*) from inventory_tbl where "+searchlist + " like '%" + searchdate + "%'";
 		            PreparedStatement totalstem = conn.prepareStatement(totalsql);
 		            ResultSet totalrs = totalstem.executeQuery();
+		            
 		            
 		            while(totalrs.next()){
 		               totalCount = totalrs.getInt(1);
@@ -99,6 +104,8 @@ table, th, tr, td {
 		            liststem.setInt(1,(currentPage-1)*countList);
 		            liststem.setInt(2, countList);
 		            ResultSet listrs = liststem.executeQuery();
+		            
+				
 
 		            while (listrs.next()) {
 		            	String product_name = listrs.getString(1);
@@ -140,29 +147,29 @@ table, th, tr, td {
 
 		         if(startPage>1){
 		         %>
-		            <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=1">처음</a></li>
+		            <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=1&search=<%=searchdate%>&second_search=<%=searchselete%>">처음</a></li>
 		         <%
 		         }
 		         
 		         if(startPage>1){
 		         %>
-		            <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=<%=startPage-countPage%>">이전</a></li>
+		            <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=<%=startPage-countPage%>&search=<%=searchdate%>&second_search=<%=searchselete%>">이전</a></li>
 		         <%
 		         }
 		         
 		         for(int i = startPage; i <= endPage; i++){
 		         %>
-		         <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=<%=i%>"><%=i%></a></li>
+		         <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=<%=i%>&search=<%=searchdate%>&second_search=<%=searchselete%>"><%=i%></a></li>
 		         <%
 		         }
 		         if(endPage!=totalPage){
 		         %>
-		         <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=<%=startPage+countPage%>">다음</a></li>
+		         <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=<%=startPage+countPage%>&search=<%=searchdate%>&second_search=<%=searchselete%>">다음</a></li>
 		         <%
 		         }
 		         if(endPage!=totalPage){
 		         %>
-		         <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=<%=totalPage%>">끝</a></li>
+		         <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=<%=totalPage%>&search=<%=searchdate%>&second_search=<%=searchselete%>">끝</a></li>
 		         <%
 		            }
 		            listrs.close();
