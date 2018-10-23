@@ -1,0 +1,107 @@
+use inventory_control_muhanbit_db;
+
+-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+drop table inventory_list_tbl;
+drop table inventory_tbl;
+drop table product_tbl;
+drop table deliver_serial_tbl;
+
+
+
+-- product_tbl Table Create SQL
+CREATE TABLE product_tbl
+(
+    `category`      VARCHAR(50)    NOT NULL    COMMENT '카테고리', 
+    `product_name`  VARCHAR(50)    NOT NULL    COMMENT '물건이름',
+UNIQUE KEY (product_name)
+);
+
+ALTER TABLE product_tbl COMMENT '물품';
+
+
+-- inventory_tbl Table Create SQL
+CREATE TABLE inventory_tbl
+(
+    `product_name`       VARCHAR(50)     NOT NULL    COMMENT '물건이름', 
+    `serial_number`      VARCHAR(50)     NOT NULL    COMMENT '시리얼넘버', 
+    `input_date`         DATE            NOT NULL    COMMENT '입고일', 
+    `other_information`  VARCHAR(200)    NULL        COMMENT '기타사항', 
+    PRIMARY KEY (serial_number)
+);
+
+ALTER TABLE inventory_tbl COMMENT '재고 테이블';
+
+ALTER TABLE inventory_tbl
+ADD CONSTRAINT FK_inventory_tbl_product_name_product_tbl_product_name
+FOREIGN KEY (product_name)
+REFERENCES product_tbl (product_name)  
+ON DELETE cascade ON UPDATE cascade;
+
+
+-- inventory_list_tbl Table Create SQL
+CREATE TABLE inventory_list_tbl
+(
+    `seq`           INT            NOT NULL    AUTO_INCREMENT COMMENT 'seq',
+    `product_name`       VARCHAR(50)     NOT NULL    COMMENT '물건이름', 
+    `inventory`          INT          DEFAULT '0'   NULL    COMMENT '입고량', 
+    `deliver`          INT             DEFAULT '0'   NULL    COMMENT '납품량',
+    `input_date`         DATE            NULL        COMMENT '입고일',
+    `output_date`        VARCHAR(600)      DEFAULT ''      NULL        COMMENT '납품일',
+    `company`        VARCHAR(200)      DEFAULT ''      NULL        COMMENT '납품회사',
+  PRIMARY KEY (seq)
+);
+
+ALTER TABLE inventory_list_tbl COMMENT '재고 내역 테이블';
+
+ALTER TABLE inventory_list_tbl ADD CONSTRAINT FK_inventory_list_tbl_product_name_product_tbl_product_name FOREIGN KEY (product_name)
+ REFERENCES product_tbl (product_name)  ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+
+CREATE TABLE deliver_serial_tbl
+(
+    `seq`           INT            NOT NULL    AUTO_INCREMENT COMMENT 'seq',
+    `product_name`       VARCHAR(50)     NOT NULL    COMMENT '물건이름', 
+    `serial_number`        VARCHAR(200)      DEFAULT ''      NULL        COMMENT '납품회사',
+    `output_date`        VARCHAR(600)      DEFAULT ''      NULL        COMMENT '납품일',
+    `company`        VARCHAR(200)      DEFAULT ''      NULL        COMMENT '납품회사',   
+     PRIMARY KEY (seq)
+);
+
+
+
+
+INSERT INTO PRODUCT_TBL VALUES('서버','301A');
+INSERT INTO PRODUCT_TBL VALUES('서버','301B');
+INSERT INTO PRODUCT_TBL VALUES('서버','301C');
+INSERT INTO PRODUCT_TBL VALUES('서버','301D');
+INSERT INTO PRODUCT_TBL VALUES('서버','301E');
+
+INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3001','2018-07-01','데이터 인서트');
+INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3002','2018-07-01','데이터 인서트');
+INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3003','2018-07-01','데이터 인서트');
+INSERT INTO inventory_tbl (product_name,serial_number,input_date,other_information)VALUES('301E','3004','2018-07-01','데이터 인서트');
+INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3005','2018-07-01','데이터 인서트');
+INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3006','2018-07-01','데이터 인서트');
+INSERT INTO inventory_tbl (product_name,serial_number,input_date,other_information)VALUES('301E','3007','2018-07-01','데이터 인서트');
+INSERT INTO inventory_tbl (product_name,serial_number,input_date,other_information)VALUES('301E','3008','2018-07-01','데이터 인서트');
+INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3009','2018-07-01','데이터 인서트');
+INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information)VALUES('301E','30010','2018-07-01','데이터 인서트');
+
+
+INSERT INTO inventory_list_tbl(product_name,inventory,input_date) VALUES('301E',10,'2018-07-01');
+
+
+
+
+select * from product_tbl;
+select * from inventory_tbl;
+select * from inventory_list_tbl;
+
+
+
+
+
+
+
+
