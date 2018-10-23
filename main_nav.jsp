@@ -38,6 +38,7 @@
     <ul class="dropdown-menu w3-col s3" style="text-align: center; width: 100%;" >
       <li><a href="index.jsp?section=databackup.jsp" class="w3-button w3-block">백업파일 생성</a></li>
       <li><a href="index.jsp?section=restore.jsp" class="w3-button w3-block">데이터 복구</a></li>
+      <li><a href="index.jsp?section=restore.jsp" class="w3-button w3-block">데이터 엑셀파일로 생성</a></li>
   
     </ul>
  	 </div>
