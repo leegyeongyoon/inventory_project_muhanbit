@@ -31,24 +31,17 @@
     <div class="w3-col s3">
       <a href="index.jsp?section=inventory_list.jsp" class="w3-button w3-block">재고 내역</a>
     </div>
-    
      <div class="w3-col s3">
     <div class="dropdown " align="center">
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: #f1f1f1; border-color: #f1f1f1; color: black; font-size: 15pt; ">백업 관리</button>
     <ul class="dropdown-menu w3-col s3" style="text-align: center; width: 100%;" >
       <li><a href="index.jsp?section=databackup.jsp" class="w3-button w3-block">백업파일 생성</a></li>
       <li><a href="index.jsp?section=restore.jsp" class="w3-button w3-block">데이터 복구</a></li>
-  
+      <li><a href="index.jsp?section=restore.jsp" class="w3-button w3-block">데이터 엑셀 파일로 생성</a></li>
     </ul>
  	 </div>
     </div>
-    
-   
-    
-    
   </div>
 </div>
-
-
 </body>
 </html>
