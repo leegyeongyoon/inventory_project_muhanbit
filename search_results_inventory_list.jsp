@@ -43,7 +43,7 @@ table, th, tr, td {
 </head>
 <body style="height: 933px;">
 	<div class="w3-center w3-padding-64" id="contact">
-		<span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">검색 결과</span>
+		<span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">재고 내역 검색 결과</span>
 	</div>
 	<table class="table" style="margin-bottom: 379px;">
 		<thead class="thead-dark">
@@ -63,7 +63,7 @@ table, th, tr, td {
 				String product_name,inventory,deliver,input_date,output_date,company;
 
 				searchdate = request.getParameter("search");
-				switch (request.getParameter("second_seach")) {
+				switch (request.getParameter("second_search")) {
 				case "1":
 					searchlist = "product_name";
 					break;
@@ -87,7 +87,7 @@ table, th, tr, td {
 			    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_control_muhanbit_db","root","muhanbit");
 				Statement stmt = con.createStatement();
 				String sql = "SELECT product_name, inventory, deliver, input_date, output_date, company  from inventory_list_tbl WHERE "
-						+ searchlist + " like '%" + searchdate + "%'";
+						+ searchlist + " like '%" + searchdate + "%' order by 3 desc, 2 desc";
 				ResultSet rs = stmt.executeQuery(sql);
 
 				while (rs.next()) {
