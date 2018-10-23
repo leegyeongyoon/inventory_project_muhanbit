@@ -45,9 +45,6 @@ tylesheet"href="https://fonts.googleapis.com/css?family=Lato">
 	</nav>
 	<div class="w3-content"
 		style="max-width: 1100px; margin-top: 40px; margin-bottom: 80px">
-		<header>
-			<jsp:include page="main_header.jsp" /> 
-		</header>
 		<section> 
 		<%
 		 	String prm = request.getParameter("section");
