@@ -62,6 +62,7 @@ html, body, h1, h2, h3, h4 {
 			frm_obj_search.search.focus();
 			return false;
 		}
+		frm_obj_search.action = "index.jsp?section="+action_selete+".jsp";
 		frm_obj_search.action = "index.jsp?section="+action_selete+".jsp&currentPage=1";
 		frm_obj_search.submit();
 	}
