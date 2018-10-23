@@ -43,9 +43,9 @@ table, th, tr, td {
 </head>
 <body style="height: 933px;">
 	<div class="w3-center w3-padding-64" id="contact">
-		<span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">검색 결과</span>
+		<span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">현재 재고 검색 결과</span>
 	</div>
-	<table class="table" style="margin-bottom: 379px;">
+	<table class="table">
 		<thead class="thead-dark">
 			<tr>
 				<th>물건 이름</th>
@@ -55,13 +55,11 @@ table, th, tr, td {
 			</tr>
 		</thead>
 		<%
-			try {
 				String searchlist = null;
 				String searchdate = null;
-				String product_name,serial_number,input_date,other_information;
-
+				
 				searchdate = request.getParameter("search");
-				switch (request.getParameter("second_seach")) {
+				switch (request.getParameter("second_search")) {
 				case "1":
 					searchlist = "product_name";
 					break;
@@ -75,36 +73,107 @@ table, th, tr, td {
 					searchlist = "other_information";
 					break;
 				}
-				Class.forName("com.mysql.jdbc.Driver");
-			    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_control_muhanbit_db","root","muhanbit");
-				Statement stmt = con.createStatement();
-				String sql = "SELECT product_name, serial_number, input_date, other_information  from inventory_tbl WHERE "
-						+ searchlist + " like '%" + searchdate + "%'";
-				ResultSet rs = stmt.executeQuery(sql);
+				
+		            int totalCount = 0;
+		            //드라이버 로드
+		            Class.forName("com.mysql.jdbc.Driver");
+		            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_control_muhanbit_db",
+		                  "root", "muhanbit");
+		            
+		            String totalsql = "SELECT count(*) from inventory_tbl where "+searchlist + " like '%" + searchdate + "%'";
+		            PreparedStatement totalstem = conn.prepareStatement(totalsql);
+		            ResultSet totalrs = totalstem.executeQuery();
+		            
+		            while(totalrs.next()){
+		               totalCount = totalrs.getInt(1);
+		            }// 전체 행 가져오는 쿼리문
+		            
+		            int currentPage = 1; // 현재 페이지
+		            if(request.getParameter("currentPage")!=null){
+		               currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		            }// 만약 현재 페이지에 값이 들어가서 넘어온다면 현재 페이지를 그 페이지로 설정해준다.
+		            
+		            int countList = 10; // 한 페이지에 보여줄 글 수
+		            String listSql = "SELECT product_name, serial_number, input_date, other_information from inventory_tbl WHERE "
+	                        + searchlist + " like '%" + searchdate + "%' order by 3 desc, 2 LIMIT ?, ?";
+		            PreparedStatement liststem = conn.prepareStatement(listSql);
+		            liststem.setInt(1,(currentPage-1)*countList);
+		            liststem.setInt(2, countList);
+		            ResultSet listrs = liststem.executeQuery();
 
-				while (rs.next()) {
-					product_name = rs.getString(1);
-					serial_number = rs.getString(2);
-					input_date = rs.getString(3);
-					other_information = rs.getString(4);
-		%>
-		<tbody>
-			<tr style="margin-bottom: 2em;">
-				<td><%=product_name%></td>
-				<td><%=serial_number%></td>
-				<td><%=input_date%></td>
-				<td><%=other_information%></td>
-			</tr>
-		</tbody>
-		<%
-			}
-				stmt.close();
-				con.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		%>
-	</table>
-	</div>
-</body>
-</html>
+		            while (listrs.next()) {
+		            	String product_name = listrs.getString(1);
+		            	String serial_number = listrs.getString(2);
+		            	String input_date = listrs.getString(3);
+		            	String other_information = listrs.getString(4);
+		         %>
+		         <tr>
+		            <td><%=product_name%></td>
+					<td><%=serial_number%></td>
+					<td><%=input_date%></td>
+					<td><%=other_information%></td>
+		         </tr>
+		         </tbody>
+		         <%
+		            }
+		         %>
+		         </table>
+		         <div class="w3-center">
+		         <ul class="pagination">
+		         <%
+		         int countPage = 5;
+		         int totalPage = totalCount/countList;
+		         
+		         if(totalCount % countList > 0){
+		            totalPage++;
+		         }
+
+		         if(totalPage < currentPage){
+		            currentPage = totalPage;
+		         }
+
+		         int startPage = ((currentPage - 1) /5) * 5 + 1;
+		         int endPage = startPage + countPage - 1;
+
+		         if(endPage > totalPage){
+		            endPage = totalPage;
+		         }
+
+		         if(startPage>1){
+		         %>
+		            <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=1">처음</a></li>
+		         <%
+		         }
+		         
+		         if(startPage>1){
+		         %>
+		            <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=<%=startPage-countPage%>">이전</a></li>
+		         <%
+		         }
+		         
+		         for(int i = startPage; i <= endPage; i++){
+		         %>
+		         <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=<%=i%>"><%=i%></a></li>
+		         <%
+		         }
+		         if(endPage!=totalPage){
+		         %>
+		         <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=<%=startPage+countPage%>">다음</a></li>
+		         <%
+		         }
+		         if(endPage!=totalPage){
+		         %>
+		         <li><a href="index.jsp?section=search_results_inventory_state.jsp&currentPage=<%=totalPage%>">끝</a></li>
+		         <%
+		            }
+		            listrs.close();
+		            totalrs.close();
+		            liststem.close();
+		            totalstem.close();
+		            conn.close();
+		         %>
+		      </ul>
+		   </div>
+		   </div>
+		</body>
+		</html>

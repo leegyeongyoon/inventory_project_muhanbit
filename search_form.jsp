@@ -62,7 +62,7 @@ html, body, h1, h2, h3, h4 {
 			frm_obj_search.search.focus();
 			return false;
 		}
-		frm_obj_search.action = "index.jsp?section="+action_selete+".jsp";
+		frm_obj_search.action = "index.jsp?section="+action_selete+".jsp&currentPage=1";
 		frm_obj_search.submit();
 	}
 </script>
@@ -86,7 +86,7 @@ html, body, h1, h2, h3, h4 {
 		<div class="w3-section">
 				<label>검색 키워드</label>
 				<div class="form-group">
-				<select class="form-control" name="second_seach" id="second_selete">
+				<select class="form-control" name="second_search" id="second_selete">
 				</select>
 		</div>
 		</div>
