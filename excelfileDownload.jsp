@@ -53,7 +53,7 @@
     // 파일 mime 타입으로 지정해 준다.
      
     // 업로드 파일의 제목이 깨질 수 있으므로 인코딩을 해준다.
-    String sEncoding = new String(fileName.getBytes("euc-kr"),"8859_1");
+    String sEncoding = new String(fileName.getBytes("utf-8"),"8859_1");
     //String B = "utf-8";
     //String sEncoding = URLEncoder.encode(A,B);
      
