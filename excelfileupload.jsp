@@ -75,19 +75,13 @@ a {
                 // form 태그에서 <input type="file" name="여기에 지정한 이름" />을 가져온다.
                 //String file1 = "C:/dump.txt"; // 파일 input에 지정한 이름을 가져옴
                 // 그에 해당하는 실재 파일 이름을 가져옴
-                String originalName1 = "inventorystate.csv";
-                String fileName1 = "inventorystate.csv";
-                
-                String originalName2 = "inventorylist.csv";
-                String fileName2 = "inventorylist.csv";
-                
-                String originalName3 = "deliverlist.csv";
-                String fileName3 = "deliverlist.csv";
+                String originalName[] ={"inventorystate.csv" , "inventorylist.csv" , "deliverlist.csv"};
+                String fileName[] ={"inventorystate.csv" , "inventorylist.csv" , "deliverlist.csv"};  
                 // 파일 타입 정보를 가져옴
 
-                File file1 = new File("C:/Temp/inventorystate.csv");
-                File file2 = new File("C:/Temp/inventorylist.csv");
-                File file3 = new File("C:/Temp/deliverlist.csv");
+                //File file1 = new File("C:/Temp/inventorystate.csv");
+                //File file2 = new File("C:/Temp/inventorylist.csv");
+                //File file3 = new File("C:/Temp/deliverlist.csv");
                   
         %>
         <table class="table" style="margin-bottom: 80px;">
@@ -100,15 +94,15 @@ a {
             <tbody>
               <tr>
                 <td>현재 재고 목록 데이터</td>
-                <td><a id="down1" href="#"><%=originalName1%></a></td>
+                <td><a id="down1" href="#"><%=originalName[0]%></a></td>
               </tr>
               <tr>
                 <td>재고 내역 데이터</td>
-                <td><a id="down2" href="#"><%=originalName2%></a></td>
+                <td><a id="down2" href="#"><%=originalName[1]%></a></td>
               </tr>
               <tr>
                 <td>재고 납품 데이터</td>
-                <td><a id="down3" href="#"><%=originalName3%></a></td>
+                <td><a id="down3" href="#"><%=originalName[2]%></a></td>
               </tr>
             </tbody>
           </table> 
@@ -119,7 +113,7 @@ a {
               <img src="<%=request.getContextPath()%>/img/charset.png" style="width:90%; height:400px;">
               <div class="caption">
                 <p style="font-size: 14pt;font-weight: bold;">다운받은 엑셀파일 경로에 들어가 있는 엑셀 파일 중 한글이 깨지는</p>
-                <p style="font-size: 14pt;font-weight: bold;">엑셀 파일에 오른쪽 클릭 후 [연결 프로그램 - 메모장]으로 파일을 열어 주십시오.</p>
+                <p style="font-size: 14pt;font-weight: bold;">엑셀 파일을 오른쪽 클릭 후 [연결 프로그램 - 메모장]으로 파일을 열어 주십시오.</p>
               </div>
           </div>
           <div class="thumbnail" style="margin-top:10px;">
@@ -143,7 +137,7 @@ a {
             event.preventDefault(); // a 태그의 기본 동작을 막음
             event.stopPropagation(); // 이벤트의 전파를 막음
             // fileName1을 utf-8로 인코딩한다.
-            var fName = encodeURIComponent("<%=fileName1%>");
+            var fName = encodeURIComponent("<%=fileName[0]%>");
                     // 인코딩된 파일이름을 쿼리문자열에 포함시켜 다운로드 페이지로 이동
                     window.location.href = "excelfileDownload.jsp?file_name=" + fName;
                 });
@@ -152,7 +146,7 @@ a {
             event.preventDefault(); // a 태그의 기본 동작을 막음
             event.stopPropagation(); // 이벤트의 전파를 막음
             // fileName1을 utf-8로 인코딩한다.
-            var fName = encodeURIComponent("<%=fileName2%>");
+            var fName = encodeURIComponent("<%=fileName[1]%>");
                     // 인코딩된 파일이름을 쿼리문자열에 포함시켜 다운로드 페이지로 이동
                     window.location.href = "excelfileDownload.jsp?file_name=" + fName;
                 });
@@ -161,15 +155,15 @@ a {
             event.preventDefault(); // a 태그의 기본 동작을 막음
             event.stopPropagation(); // 이벤트의 전파를 막음
             // fileName1을 utf-8로 인코딩한다.
-            var fName = encodeURIComponent("<%=fileName3%>");
+            var fName = encodeURIComponent("<%=fileName[2]%>");
                     // 인코딩된 파일이름을 쿼리문자열에 포함시켜 다운로드 페이지로 이동
                     window.location.href = "excelfileDownload.jsp?file_name=" + fName;
                 });
     </script>
     </div>
     </div>
-    </div>
-  <%
+	<% 
+         
     }    
          catch(Exception e){
              e.printStackTrace(); 

@@ -22,7 +22,7 @@
 	String fileName1 = "dump.txt";
 	// 파일 타입 정보를 가져옴
 
-	File file = new File("C:/dump.txt");
+	//File file = new File("C:/dump.txt");
 %>
 	<div class="w3-section" style="height: 320px;">
 	<div class="w3-center">
