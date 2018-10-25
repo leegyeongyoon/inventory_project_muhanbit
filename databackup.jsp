@@ -29,8 +29,8 @@
 	<div class="w3-center w3-padding-64" id="contact">
 		<span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">백업 파일 확인</span>
 	</div>
-	<span style="font-size: 15pt; font-weight: bold;">파일 다운로드 : </span>
-	<a id="downA" href="#" style="font-size: 15pt;"><%=originalName1%></a>
+	<span style="font-size: 15pt; font-weight: bold;">파일 다운로드&nbsp;&nbsp;:&nbsp;&nbsp;</span>
+	<a id="downA" href="#" style="font-size: 15pt; color: blue;"><%=originalName1%></a>
 	<script type="text/javascript">
         // 영문파일은 그냥 다운로드 클릭시 정상작동하지만 한글파일명을 쿼리문으로 날릴경우 인코딩 문제가 발생할 수 있다. 한글이 깨져 정상작동하지 않을 수 있음
         // 따라서, 쿼리문자열에 한글을 보낼 때는 항상 인코딩을 해서 보내주도록 하자.
