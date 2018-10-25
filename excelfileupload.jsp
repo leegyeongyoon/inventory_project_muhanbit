@@ -32,13 +32,17 @@ html, body, h1, h2, h3, h4 {
    margin-top: 6px
 }
 
-a:hover {
-   color: lightgray;
+a {
+   color: blue;
 }
 </style>
 </head>
 <body>
-
+	  <div class="w3-section" style="height: 100%;">
+				<div class="w3-center">
+				<div class="w3-center w3-padding-32" id="contact" style="margin-bottom: 2em; margin-top: 40px;">
+					<span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">데이터 엑셀 파일로 생성</span>
+				</div>
          <%	try{
         	
         
@@ -62,8 +66,6 @@ a:hover {
 	             pstmt = conn.prepareStatement(deliversql);
 	             pstmt.executeQuery();
 	                         
-	             
-	             
 	             pstmt.close();
 	             conn.close();
 
@@ -88,19 +90,52 @@ a:hover {
 	          	File file3 = new File("C:/Temp/deliverlist.csv");
 	              
         %>
-         
-   
-   
-   파일 다운로드 :
-	<a id="down1" href="#"><%=originalName1%></a>
-	<a id="down2" href="#"><%=originalName2%></a>
-	<a id="down3" href="#"><%=originalName3%></a>
-	
-	
-	* 엑셀 파일 생성중 한글이 깨질 때 *
-	<img src="<%=request.getContextPath()%>/img/charset.png" style="width:50%; height:400px;"><br>
-	<img src="<%=request.getContextPath()%>/img/charset2.png" style="width:50%; height:400px;"><br>
-	<img src="<%=request.getContextPath()%>/img/charset3.png" style="width:50%; height:400px;"><br>
+        <table class="table">
+		    <thead>
+		      <tr>
+		        <th style="text-align: center;">엑셀 데이터 유형</th>
+		        <th style="text-align: center;">파일 다운로드</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td>현재 재고 목록 데이터</td>
+		        <td><a id="down1" href="#"><%=originalName1%></a></td>
+		      </tr>
+		      <tr>
+		        <td>재고 내역 데이터</td>
+		        <td><a id="down2" href="#"><%=originalName2%></a></td>
+		      </tr>
+		      <tr>
+		        <td>재고 납품 데이터</td>
+		        <td><a id="down3" href="#"><%=originalName3%></a></td>
+		      </tr>
+		    </tbody>
+		  </table> 
+		
+		<button type="button" class="btn btn-danger col-sm-12" data-toggle="collapse" data-target="#demo" style="margin-bottom: 2em;">엑셀 파일 생성중 한글이 깨질 때 버튼을 눌러 주세요</button>
+		  <div id="demo" class="collapse">
+		  <div class="thumbnail" style="margin-top: 80px;">
+	          <img src="<%=request.getContextPath()%>/img/charset.png" style="width:90%; height:400px;">
+	          <div class="caption">
+	            <p style="font-size: 14pt;font-weight: bold;">[컴퓨터 - 로컬 디스크(C:) - Temp]에 들어가 있는 엑셀 파일 중 한글이 깨지는</p>
+	            <p style="font-size: 14pt;font-weight: bold;">엑셀 파일에 오른쪽 클릭 후 [연결 프로그램 - 메모장]으로 파일을 열어 주십시오.</p>
+	          </div>
+	      </div>
+	      <div class="thumbnail" style="margin-top:10px;">
+	         <img src="<%=request.getContextPath()%>/img/charset2.png" style="width:90%; height:400px;">
+	          <div class="caption">
+	            <p style="font-size: 14pt;font-weight: bold;">메모장에서 [파일 - 다른 이름으로 저장]을 눌러 줍니다.</p>
+	          </div>
+	      </div>
+	      <div class="thumbnail" style="margin-top:10px;">
+	        <img src="<%=request.getContextPath()%>/img/charset3.png" style="width:90%; height:400px;">
+	          <div class="caption">
+	            <p style="font-size: 14pt;font-weight: bold;">제일 아래 부분에 인코딩을 ANSI로 바꿔 주신 후 저장을 해 줍니다.</p>
+	            <p style="font-size: 14pt;font-weight: bold;">저장 하신 후 파일을 다시 열어 주시면 한글이 깨지지 않는 파일을 보실 수 있으십니다.</p>
+	          </div>
+	      </div>
+		  </div>
 	<script type="text/javascript">
         // 영문파일은 그냥 다운로드 클릭시 정상작동하지만 한글파일명을 쿼리문으로 날릴경우 인코딩 문제가 발생할 수 있다. 한글이 깨져 정상작동하지 않을 수 있음
         // 따라서, 쿼리문자열에 한글을 보낼 때는 항상 인코딩을 해서 보내주도록 하자.
@@ -131,20 +166,15 @@ a:hover {
 					window.location.href = "excelfileDownload.jsp?file_name=" + fName;
 				});
 	</script>
+	</div>
+	</div>
+	</div>
   <%
-	}
-        	
-           
-         
+	}    
          catch(Exception e){
-        	
-        	
-        	 e.printStackTrace();
-        	 
-         }
-         
-  %>
-    
+        	 e.printStackTrace(); 
+         }   
+  %>  
 </body>
 </html>
 
