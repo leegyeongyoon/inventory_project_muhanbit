@@ -49,7 +49,7 @@ a {
             Process  exec = Runtime.getRuntime().exec(new String[]{"cmd.exe","/c","del /q C:\\Temp\\inventorystate.csv"});
                      exec = Runtime.getRuntime().exec(new String[]{"cmd.exe","/c","del /q C:\\Temp\\inventorylist.csv"});
                      exec = Runtime.getRuntime().exec(new String[]{"cmd.exe","/c","del /q C:\\Temp\\deliverlist.csv"});
-                System.out.println("dd");
+               
                 Thread.sleep(1000);
                  Class.forName("com.mysql.jdbc.Driver");
                  Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_control_muhanbit_db",
