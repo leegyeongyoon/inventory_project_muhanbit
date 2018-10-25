@@ -118,7 +118,7 @@ a {
 		  <div class="thumbnail" style="margin-top: 80px;">
 	          <img src="<%=request.getContextPath()%>/img/charset.png" style="width:90%; height:400px;">
 	          <div class="caption">
-	            <p style="font-size: 14pt;font-weight: bold;">[컴퓨터 - 로컬 디스크(C:) - Temp]에 들어가 있는 엑셀 파일 중 한글이 깨지는</p>
+	            <p style="font-size: 14pt;font-weight: bold;">다운받은 엑셀파일 경로에 들어가 있는 엑셀 파일 중 한글이 깨지는</p>
 	            <p style="font-size: 14pt;font-weight: bold;">엑셀 파일에 오른쪽 클릭 후 [연결 프로그램 - 메모장]으로 파일을 열어 주십시오.</p>
 	          </div>
 	      </div>

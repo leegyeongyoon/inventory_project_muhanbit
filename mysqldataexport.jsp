@@ -96,11 +96,11 @@ a:hover {
 	<a id="down2" href="#"><%=originalName2%></a>
 	<a id="down3" href="#"><%=originalName3%></a>
 	
-	
-	* 엑셀 파일 생성중 한글이 깨질 때 *
-	<img alt="" src="C:\\Temp\\charset.png">
-	<img alt="" src="C:\\Temp\\charset2.png">
-	<img alt="" src="C:\Temp\charset3.png">
+	<br>
+	* 엑셀 파일 생성중 한글이 깨질 때 *<br>
+	<img src="<%=request.getContextPath()%>/img/charset.png" style="width:50%; height:400px;"><br>
+	<img src="<%=request.getContextPath()%>/img/charset2.png" style="width:50%; height:400px;"><br>
+	<img src="<%=request.getContextPath()%>/img/charset3.png" style="width:50%; height:400px;"><br>
 	<script type="text/javascript">
         // 영문파일은 그냥 다운로드 클릭시 정상작동하지만 한글파일명을 쿼리문으로 날릴경우 인코딩 문제가 발생할 수 있다. 한글이 깨져 정상작동하지 않을 수 있음
         // 따라서, 쿼리문자열에 한글을 보낼 때는 항상 인코딩을 해서 보내주도록 하자.
