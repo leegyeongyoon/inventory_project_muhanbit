@@ -8,8 +8,8 @@
 </head>
 <body>
 <div class="w3-panel">
-    <h1><b>장비 관리 프로그램</b></h1>
-    <p>Object Management Program</p>
+    <h1><b>재고 관리 프로그램</b></h1>
+    <p>Inventory Management Program</p>
   </div>
   <div class="w3-container">
     <div class="w3-display-container mySlides">
