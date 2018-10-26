@@ -89,17 +89,17 @@ a:hover {
                 liststem.setInt(3, (currentPage-1)*countList);
                 liststem.setInt(4, countList);
                 ResultSet listrs = liststem.executeQuery();
-				
+                int k =0;
                 while (listrs.next()) {
 					String product_name= listrs.getString(1);
 					String serial_number = listrs.getString(2);
 					String output_date_sel = listrs.getString(3);
 					String company= listrs.getString(4);
-					int i = 1;
+				
 					
 			%>
 			<tr>
-				<td><%=totalCount-i%></td>
+				<td><%=totalCount-k%></td>
 				<td><%=product_name%></td>
 				<td><%=serial_number%></td>
 				<td><%=output_date%></td>
@@ -108,7 +108,9 @@ a:hover {
 			</tr>
                  </tbody>
                  <%
-                    }
+                k++;   
+                 System.out.println(k);
+                }
                  %>
                  </table>
 				 <div class="w3-center">
