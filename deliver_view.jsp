@@ -42,7 +42,7 @@ a:hover {
 		<span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">재고
 			내역</span>
 	</div>
-	<table class="table" style="margin-bottom: 379px; text-align: center;">
+	<table class="table" style="text-align: center;">
 		<thead class="thead-dark">
 			<tr>
 				<th style="text-align: center;">번호</th>
@@ -60,43 +60,113 @@ a:hover {
 				request.setCharacterEncoding("utf-8");
 				String req_product_name = request.getParameter("product_name");
 				String output_date = request.getParameter("output_date");
+				
+				int totalCount = 0;
+				
 				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_control_muhanbit_db",
 						"root", "muhanbit");
-				PreparedStatement pstmt = conn.prepareStatement("SELECT count(*) FROM deliver_serial_tbl WHERE product_name = ? AND output_date = ? ");
-				pstmt.setString(1, req_product_name);
-				pstmt.setString(2, output_date);
-				ResultSet rs = pstmt.executeQuery();
-				rs.next();
-				int count = rs.getInt(1);
-				 pstmt = conn.prepareStatement("SELECT product_name , serial_number,output_date,company FROM deliver_serial_tbl WHERE product_name = ? AND output_date = ? ");
-				pstmt.setString(1, req_product_name);
-				pstmt.setString(2, output_date);
-				 rs = pstmt.executeQuery();
-				int i  =0 ;
+				String totalsql = "SELECT count(*) FROM deliver_serial_tbl WHERE product_name = ? AND output_date = ? ";
+                PreparedStatement totalstem = conn.prepareStatement(totalsql);
+                totalstem.setString(1, req_product_name);
+                totalstem.setString(2, output_date);
+                ResultSet totalrs = totalstem.executeQuery();
+                
+                while(totalrs.next()){
+                    totalCount = totalrs.getInt(1);
+                 }// 전체 행 가져오는 쿼리문
+                
+                int currentPage = 1; // 현재 페이지
+                if(request.getParameter("currentPage")!=null){
+                   currentPage = Integer.parseInt(request.getParameter("currentPage"));
+                }// 만약 현재 페이지에 값이 들어가서 넘어온다면 현재 페이지를 그 페이지로 설정해준다.
+                
+                int countList = 10; // 한 페이지에 보여줄 글 수
 				
-				while (rs.next()) {
-					String product_name= rs.getString(1);
-					String serial_number = rs.getString(2);
-					String output_date_sel = rs.getString(3);
-					String company= rs.getString(4);
+                String listSql = "SELECT product_name , serial_number,output_date,company FROM deliver_serial_tbl WHERE product_name = ? AND output_date = ? order by 2 LIMIT ?, ?";
+                PreparedStatement liststem = conn.prepareStatement(listSql);
+                liststem.setString(1, req_product_name);
+                liststem.setString(2, output_date);
+                liststem.setInt(3, (currentPage-1)*countList);
+                liststem.setInt(4, countList);
+                ResultSet listrs = liststem.executeQuery();
+				
+                while (listrs.next()) {
+					String product_name= listrs.getString(1);
+					String serial_number = listrs.getString(2);
+					String output_date_sel = listrs.getString(3);
+					String company= listrs.getString(4);
+					int i = 1;
 					
 			%>
 			<tr>
-				<td><%=count-i%></td>
+				<td><%=totalCount-i%></td>
 				<td><%=product_name%></td>
 				<td><%=serial_number%></td>
 				<td><%=output_date%></td>
 				<td><%=company%></td>
 			
 			</tr>
-			<%	i++;
-				}
-				rs.close();
-				pstmt.close();
-				conn.close();
-			%>
-		</tbody>
-	</table>
-	</div>
-</body>
-</html>
+                 </tbody>
+                 <%
+                    }
+                 %>
+                 </table>
+				 <div class="w3-center">
+                 <ul class="pagination">
+                 <%
+                 int countPage = 5;
+                 int totalPage = totalCount/countList;
+                 
+                 if(totalCount % countList > 0){
+                    totalPage++;
+                 }
+
+                 if(totalPage < currentPage){
+                    currentPage = totalPage;
+                 }
+
+                 int startPage = ((currentPage - 1) /5) * 5 + 1;
+                 int endPage = startPage + countPage - 1;
+
+                 if(endPage > totalPage){
+                    endPage = totalPage;
+                 }
+
+                 if(startPage>1){
+                 %>
+                    <li><a href="index.jsp?section=deliver_view.jsp&currentPage=1&product_name=<%=req_product_name%>&output_date=<%=output_date%>">처음</a></li>
+                 <%
+                 }
+                 
+                 if(startPage>1){
+                 %>
+                    <li><a href="index.jsp?section=deliver_view.jsp&currentPage=<%=startPage-countPage%>&product_name=<%=req_product_name%>&output_date=<%=output_date%>">이전</a></li>
+                 <%
+                 }
+                 
+                 for(int i = startPage; i <= endPage; i++){
+                 %>
+                 <li><a href="index.jsp?section=deliver_view.jsp&currentPage=<%=i%>&product_name=<%=req_product_name%>&output_date=<%=output_date%>"><%=i%></a></li>
+                 <%
+                 }
+                 if(endPage!=totalPage){
+                 %>
+                 <li><a href="index.jsp?section=deliver_view.jsp&currentPage=<%=startPage+countPage%>&product_name=<%=req_product_name%>&output_date=<%=output_date%>">다음</a></li>
+                 <%
+                 }
+                 if(endPage!=totalPage){
+                 %>
+                 <li><a href="index.jsp?section=deliver_view.jsp&currentPage=<%=totalPage%>&product_name=<%=req_product_name%>&output_date=<%=output_date%>">끝</a></li>
+                 <%
+                    }
+                    listrs.close();
+                    totalrs.close();
+                    liststem.close();
+                    totalstem.close();
+                    conn.close();
+                 %>
+              </ul>
+           </div>
+           </div>
+        </body>
+        </html>
