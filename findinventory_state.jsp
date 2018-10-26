@@ -7,8 +7,7 @@
 
 		//드라이버 로드
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection conn = DriverManager
-				.getConnection("jdbc:mysql://localhost:3306/inventory_control_muhanbit_db", "root", "muhanbit");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_control_muhanbit_db", "root", "muhanbit");
 		PreparedStatement pstmt = conn.prepareStatement("SELECT p.category,i.product_name , i.serial_number , i.input_date , i.other_information FROM product_tbl p INNER JOIN inventory_tbl i ON p.product_name = i.product_name WHERE i.product_name = ? ORDER BY input_date DESC");
 		pstmt.setString(1, product_name);
 		ResultSet rs = pstmt.executeQuery();
