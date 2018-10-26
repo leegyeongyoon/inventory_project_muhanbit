@@ -103,7 +103,7 @@ a:hover {
             <td><%=input_date%></td>
             <td><%=output_date%></td>
             <td><%=company%></td>
-            <td><a href='index.jsp?section=deliver_view.jsp&product_name=<%=product_name_chiwan%>&input_date=<%=input_date%>&currentPage=1'>납품 시리얼 보기</a></td>
+            <td><a  style="color: blue ; text-decoration: underline;" href='index.jsp?section=deliver_view.jsp&product_name=<%=product_name_chiwan%>&input_date=<%=input_date%>&currentPage=1'>납품 시리얼 보기</a></td>
          </tr>
          </tbody>
          <%
