@@ -90,6 +90,12 @@ a:hover {
                 liststem.setInt(4, countList);
                 ResultSet listrs = liststem.executeQuery();
                 int k =0;
+                int current = currentPage;
+                int score = totalCount;
+                if(current >=2){
+                	score = score-((current-1)*10);
+                }
+                 
                 while (listrs.next()) {
 					String product_name= listrs.getString(1);
 					String serial_number = listrs.getString(2);
@@ -99,7 +105,7 @@ a:hover {
 					
 			%>
 			<tr>
-				<td><%=totalCount-k%></td>
+				<td><%=score-k%></td>
 				<td><%=product_name%></td>
 				<td><%=serial_number%></td>
 				<td><%=output_date%></td>
