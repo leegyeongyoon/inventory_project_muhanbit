@@ -39,8 +39,7 @@ a:hover {
 </head>
 <body style="height: 933px;">
 	<div class="w3-center w3-padding-64" id="contact">
-		<span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">재고
-			내역</span>
+		<span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">납품 시리얼</span>
 	</div>
 	<table class="table" style="text-align: center;">
 		<thead class="thead-dark">
@@ -48,6 +47,7 @@ a:hover {
 				<th style="text-align: center;">번호</th>
 				<th style="text-align: center;">물건명</th>
 				<th style="text-align: center;">시리얼 번호</th>
+				<th style="text-align: center;">입고일</th>
 				<th style="text-align: center;">출고일</th>
 				<th style="text-align: center;">납품 회사</th>
 				
@@ -59,16 +59,16 @@ a:hover {
 				Class.forName("com.mysql.jdbc.Driver");
 				request.setCharacterEncoding("utf-8");
 				String req_product_name = request.getParameter("product_name");
-				String output_date = request.getParameter("output_date");
+				String input_date = request.getParameter("input_date");
 				
 				int totalCount = 0;
 				
 				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_control_muhanbit_db",
 						"root", "muhanbit");
-				String totalsql = "SELECT count(*) FROM deliver_serial_tbl WHERE product_name = ? AND output_date = ? ";
+				String totalsql = "SELECT count(*) FROM deliver_serial_tbl WHERE product_name = ? AND input_date = ? ";
                 PreparedStatement totalstem = conn.prepareStatement(totalsql);
                 totalstem.setString(1, req_product_name);
-                totalstem.setString(2, output_date);
+                totalstem.setString(2, input_date);
                 ResultSet totalrs = totalstem.executeQuery();
                 
                 while(totalrs.next()){
@@ -82,16 +82,17 @@ a:hover {
                 
                 int countList = 10; // 한 페이지에 보여줄 글 수
 				
-                String listSql = "SELECT product_name , serial_number,output_date,company FROM deliver_serial_tbl WHERE product_name = ? AND output_date = ? order by 2 LIMIT ?, ?";
+                String listSql = "SELECT product_name , serial_number,input_date,output_date,company FROM deliver_serial_tbl WHERE product_name = ? AND input_date = ? order by company , serial_number LIMIT ?, ?";
                 PreparedStatement liststem = conn.prepareStatement(listSql);
                 liststem.setString(1, req_product_name);
-                liststem.setString(2, output_date);
+                liststem.setString(2, input_date);
                 liststem.setInt(3, (currentPage-1)*countList);
                 liststem.setInt(4, countList);
                 ResultSet listrs = liststem.executeQuery();
                 int k =0;
                 int current = currentPage;
                 int score = totalCount;
+                System.out.println(score);
                 if(current >=2){
                 	score = score-((current-1)*10);
                 }
@@ -99,8 +100,9 @@ a:hover {
                 while (listrs.next()) {
 					String product_name= listrs.getString(1);
 					String serial_number = listrs.getString(2);
-					String output_date_sel = listrs.getString(3);
-					String company= listrs.getString(4);
+					String input_date_sel = listrs.getString(3);
+					String output_date_sel = listrs.getString(4);
+					String company= listrs.getString(5);
 				
 					
 			%>
@@ -108,14 +110,15 @@ a:hover {
 				<td><%=score-k%></td>
 				<td><%=product_name%></td>
 				<td><%=serial_number%></td>
-				<td><%=output_date%></td>
+				<td><%=input_date_sel%></td>
+				<td><%=output_date_sel%></td>
 				<td><%=company%></td>
 			
 			</tr>
                  </tbody>
                  <%
                 k++;   
-                 System.out.println(k);
+                
                 }
                  %>
                  </table>
@@ -142,29 +145,29 @@ a:hover {
 
                  if(startPage>1){
                  %>
-                    <li><a href="index.jsp?section=deliver_view.jsp&currentPage=1&product_name=<%=req_product_name%>&output_date=<%=output_date%>">처음</a></li>
+                    <li><a href="index.jsp?section=deliver_view.jsp&currentPage=1&product_name=<%=req_product_name%>&input_date=<%=input_date%>">처음</a></li>
                  <%
                  }
                  
                  if(startPage>1){
                  %>
-                    <li><a href="index.jsp?section=deliver_view.jsp&currentPage=<%=startPage-countPage%>&product_name=<%=req_product_name%>&output_date=<%=output_date%>">이전</a></li>
+                    <li><a href="index.jsp?section=deliver_view.jsp&currentPage=<%=startPage-countPage%>&product_name=<%=req_product_name%>&input_date=<%=input_date%>">이전</a></li>
                  <%
                  }
                  
                  for(int i = startPage; i <= endPage; i++){
                  %>
-                 <li><a href="index.jsp?section=deliver_view.jsp&currentPage=<%=i%>&product_name=<%=req_product_name%>&output_date=<%=output_date%>"><%=i%></a></li>
+                 <li><a href="index.jsp?section=deliver_view.jsp&currentPage=<%=i%>&product_name=<%=req_product_name%>&input_date=<%=input_date%>"><%=i%></a></li>
                  <%
                  }
                  if(endPage!=totalPage){
                  %>
-                 <li><a href="index.jsp?section=deliver_view.jsp&currentPage=<%=startPage+countPage%>&product_name=<%=req_product_name%>&output_date=<%=output_date%>">다음</a></li>
+                 <li><a href="index.jsp?section=deliver_view.jsp&currentPage=<%=startPage+countPage%>&product_name=<%=req_product_name%>&input_date=<%=input_date%>">다음</a></li>
                  <%
                  }
                  if(endPage!=totalPage){
                  %>
-                 <li><a href="index.jsp?section=deliver_view.jsp&currentPage=<%=totalPage%>&product_name=<%=req_product_name%>&output_date=<%=output_date%>">끝</a></li>
+                 <li><a href="index.jsp?section=deliver_view.jsp&currentPage=<%=totalPage%>&product_name=<%=req_product_name%>&input_date=<%=input_date%>">끝</a></li>
                  <%
                     }
                     listrs.close();

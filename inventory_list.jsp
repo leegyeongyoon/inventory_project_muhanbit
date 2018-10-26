@@ -91,6 +91,8 @@ a:hover {
                String output_date = listrs.getString(5);
                String deliver = listrs.getString(6);
                String company = listrs.getString(7);
+               
+               String product_name_chiwan = produc_name.replaceAll("'", "&#39;");
          %>
          <tr>
             <td><%=category%></td>
@@ -100,6 +102,7 @@ a:hover {
             <td><%=input_date%></td>
             <td><%=output_date%></td>
             <td><%=company%></td>
+            <td><a href='index.jsp?section=deliver_view.jsp&product_name=<%=product_name_chiwan%>&input_date=<%=input_date%>&currentPage=1'>납품시리얼보기</a></td>
          </tr>
          </tbody>
          <%

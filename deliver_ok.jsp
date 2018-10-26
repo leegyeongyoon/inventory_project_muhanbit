@@ -16,13 +16,14 @@
 		String[] distinct_input_date = new HashSet<String>(Arrays.asList(input_date)).toArray(new String[0]);
 		String deliver[] = request.getParameterValues("deliver");
 		int[] count = new int[distinct_input_date.length];
-		String insert_data = "INSERT INTO deliver_serial_tbl(product_name , serial_number,output_date,company) VALUES ";
+		String insert_data = "INSERT INTO deliver_serial_tbl(product_name , serial_number,input_date,output_date,company) VALUES ";
 		String delete_data = "delete from inventory_tbl where ";
 		String output_date = request.getParameter("output_date");
 		String company = request.getParameter("company");
 		String product_name = request.getParameter("product_name");
-		String product_name_chiwan = product_name.replaceAll("'", "&#39;");
-		String output_date_2 =  "<a href='index.jsp?section=deliver_view.jsp&product_name="+product_name_chiwan+"&output_date="+output_date+"&currentPage=1'>"+output_date+"</a>"  ;
+		
+		//String output_date_2 =  "<a href='index.jsp?section=deliver_view.jsp&product_name="+product_name_chiwan+"&output_date="+output_date+"&currentPage=1'>"+output_date+"</a>"  ;
+		
 		//드라이버 로드
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_control_muhanbit_db",
@@ -39,7 +40,7 @@
 			}
 			pstmt=conn.prepareStatement("UPDATE inventory_list_tbl SET deliver =deliver + ?, output_date =concat(output_date,?,'(',?,')<br>') , company = concat(company,?,'<br>') WHERE product_name = ? AND input_date = ?");
 			pstmt.setInt(1, count[i]);
-			pstmt.setString(2,output_date_2);
+			pstmt.setString(2,output_date);
 			pstmt.setInt(3,count[i]);
 			pstmt.setString(4,company);
 			pstmt.setString(5,product_name);
@@ -52,7 +53,7 @@
 		pstmt=conn.prepareStatement(delete_data.substring(0, delete_data.length() - 2));
 		for(int i=0; i<deliver.length;i++){
 			pstmt.setString(i+1, deliver[i]);
-			insert_data += "(?,?,?,?),";
+			insert_data += "(?,?,?,?,?),";
 		}
 		pstmt.executeUpdate();
 			System.out.println(insert_data);
@@ -60,10 +61,11 @@
 		for(int i=0 ; i<deliver.length ; i++){
 			pstmt.setString(i + 1 + k, product_name);
 			pstmt.setString(i + 2 + k, deliver[i]);
-			pstmt.setString(i + 3 + k, output_date);
-			pstmt.setString(i + 4 + k, company);
+			pstmt.setString(i + 3 + k, input_date[i]);
+			pstmt.setString(i + 4 + k, output_date);
+			pstmt.setString(i + 5 + k, company);
 		
-			k += 3;
+			k += 4;
 			
 		}
 		k = 0;

@@ -63,7 +63,8 @@ CREATE TABLE deliver_serial_tbl
     `seq`           INT            NOT NULL    AUTO_INCREMENT COMMENT 'seq',
     `product_name`       VARCHAR(50)     NOT NULL    COMMENT 'π∞∞«¿Ã∏ß', 
     `serial_number`        VARCHAR(200)      DEFAULT ''      NULL        COMMENT '≥≥«∞»∏ªÁ',
-    `output_date`        VARCHAR(600)      DEFAULT ''      NULL        COMMENT '≥≥«∞¿œ',
+    `input_date`        DATE            NULL        COMMENT '¿‘∞Ì¿œ',
+    `output_date`        DATE            NULL        COMMENT '≥≥«∞¿œ',
     `company`        VARCHAR(200)      DEFAULT ''      NULL        COMMENT '≥≥«∞»∏ªÁ',   
      PRIMARY KEY (seq)
 );
