@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="w3-section" style="height: 320px;">
+	<div class="w3-section" style="height: 500px;">
 	<div class="w3-center">
-	<div class="w3-center w3-padding-32" id="contact" style="margin-bottom: 2em;">
+	<div class="w3-center w3-padding-64" id="contact" style="margin-bottom: 2em;">
 		<span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">데이터 복구</span>
 	</div>
 	<div class="alert alert-warning" style="margin-bottom: 2em;">

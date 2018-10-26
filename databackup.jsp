@@ -24,9 +24,9 @@
 
 	//File file = new File("C:/dump.txt");
 %>
-	<div class="w3-section" style="height: 320px;">
+	<div class="w3-section" style="height: 500px;">
 	<div class="w3-center">
-	<div class="w3-center w3-padding-64" id="contact">
+	<div class="w3-center" id="contact" style = "padding-top : 200px; padding-bottom : 2em;">
 		<span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">백업 파일 확인</span>
 	</div>
 	<span style="font-size: 15pt; font-weight: bold;">파일 다운로드&nbsp;&nbsp;:&nbsp;&nbsp;</span>
