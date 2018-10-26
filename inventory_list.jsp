@@ -52,6 +52,7 @@ a:hover {
 				<th style="text-align: center;">입고일</th>
 				<th style="text-align: center;">출고일</th>
 				<th style="text-align: center;">납품회사</th>
+				<th style="text-align: center;">시리얼 보기</th>
 			</tr>
       </thead>
       <tbody>
@@ -102,7 +103,7 @@ a:hover {
             <td><%=input_date%></td>
             <td><%=output_date%></td>
             <td><%=company%></td>
-            <td><a href='index.jsp?section=deliver_view.jsp&product_name=<%=product_name_chiwan%>&input_date=<%=input_date%>&currentPage=1'>납품시리얼보기</a></td>
+            <td><a href='index.jsp?section=deliver_view.jsp&product_name=<%=product_name_chiwan%>&input_date=<%=input_date%>&currentPage=1'>납품 시리얼 보기</a></td>
          </tr>
          </tbody>
          <%
