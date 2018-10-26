@@ -87,14 +87,15 @@ html, body, h1, h2, h3, h4 {
 		<div class="w3-section">
 				<label>검색 키워드</label>
 				<div class="form-group">
-				<select class="form-control" name="second_search" id="second_selete">
+				<select class="form-control" name="second_search" id="second_selete" onchange="search_data_selete()">
 				</select>
 		</div>
 		</div>
 		<div class="w3-section">
-			<label>찾을 정보</label> <input
-				class="w3-input w3-border w3-hover-border-black"
-				style="width: 100%;" type="text" name="search">
+			<label>찾을 정보</label>
+		<div id="search_data_input">
+		
+		</div>
 		</div>
 		<input type="button" class="w3-button w3-block w3-black w3-col s6"
 			style="margin-bottom: 3em;" value="검색" onclick="search_go()">

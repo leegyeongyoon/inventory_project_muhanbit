@@ -70,10 +70,10 @@ table, th, tr, td {
 					searchlist = "serial_number";
 					break;
 				case "3":
-					searchlist = "input_date";
+					searchlist = "other_information";
 					break;
 				case "4":
-					searchlist = "other_information";
+					searchlist = "input_date";
 					break;
 				}
 				

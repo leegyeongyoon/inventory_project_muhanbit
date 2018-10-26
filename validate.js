@@ -528,13 +528,15 @@
 			function search_first_selete() {
 				var first_selete = document.getElementById("first_selete").value;
 				if(first_selete == "1"){
-					document.getElementById("second_selete").innerHTML = "<option value='1'>물건이름</option>"
+					document.getElementById("second_selete").innerHTML = "<option value='0'></option>"
+					+"<option value='1'>물건이름</option>"
 					+"<option value='2'>시리얼넘버</option>"
-					+"<option value='3'>입고일</option>"
-					+"<option value='4'>기타사항</option>";
+					+"<option value='3'>기타사항</option>"
+					+"<option value='4'>입고일</option>";
 														
 				}else if(first_selete == "2"){
-					document.getElementById("second_selete").innerHTML = "<option value='1'>물건이름</option>"
+					document.getElementById("second_selete").innerHTML = "<option value='0'></option>"
+						+"<option value='1'>물건이름</option>"
 						+"<option value='2'>입고량</option>"
 						+"<option value='3'>납품량</option>"
 						+"<option value='4'>입고일</option>"
@@ -543,6 +545,19 @@
 					
 				}else{
 					document.getElementById("second_selete").innerHTML = null;
+					
+				}
+			}
+			
+			function search_data_selete() {
+				var first_selete = document.getElementById("second_selete").value;
+				if(first_selete == "4" || first_selete == "5"){
+					document.getElementById("search_data_input").innerHTML = "<input class='w3-input w3-border w3-hover-border-black'style='width: 100%;' type='date' name='search'>";
+														
+				}else if(first_selete != "4" && first_selete != "5"){
+					document.getElementById("search_data_input").innerHTML = "<input class='w3-input w3-border w3-hover-border-black'style='width: 100%;' type='text' name='search'>"
+				}else{
+					document.getElementById("search_data_input").innerHTML = null;
 					
 				}
 			}
