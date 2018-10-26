@@ -22,7 +22,7 @@
 		String company = request.getParameter("company");
 		String product_name = request.getParameter("product_name");
 		String product_name_chiwan = product_name.replaceAll("'", "&#39;");
-		String output_date_2 =  "<a href='deliver_view.jsp?product_name="+product_name_chiwan+"&output_date="+output_date+"'>"+output_date+"</a>"  ;
+		String output_date_2 =  "<a href='index.jsp?section=deliver_view.jsp&product_name="+product_name_chiwan+"&output_date="+output_date+"'>"+output_date+"</a>"  ;
 		//드라이버 로드
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_control_muhanbit_db",
