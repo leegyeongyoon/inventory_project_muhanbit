@@ -11,7 +11,7 @@
 								//드라이버 로드
 								String product_name = "";
 								Class.forName("com.mysql.jdbc.Driver");
-								Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sys", "root", "muhanbit");
+								Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root", "muhanbit");
 								PreparedStatement pstmt = conn.prepareStatement("CREATE DATABASE inventory_control_muhanbit_db");
 								pstmt.executeUpdate();
 								pstmt.close();
