@@ -13,6 +13,7 @@
 		PreparedStatement pstmt = conn.prepareStatement("SELECT product_name FROM product_tbl WHERE category = ?");
 		pstmt.setString(1, category);
 		ResultSet rs = pstmt.executeQuery();
+		data += "<option></option>";
 		while (rs.next()) {
 			String product_name = rs.getString(1);
 
