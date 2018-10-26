@@ -38,7 +38,7 @@
 					count[i] += 1;
 				}
 			}
-			pstmt=conn.prepareStatement("UPDATE inventory_list_tbl SET deliver =deliver + ?, output_date =concat(output_date,?,'(',?,')<br>') , company = concat(company,?,'<br>') WHERE product_name = ? AND input_date = ?");
+			pstmt=conn.prepareStatement("UPDATE inventory_list_tbl SET deliver =deliver + ?, output_date =concat(output_date,?,'(',?,')\n') , company = concat(company,?,'\n') WHERE product_name = ? AND input_date = ?");
 			pstmt.setInt(1, count[i]);
 			pstmt.setString(2,output_date);
 			pstmt.setInt(3,count[i]);

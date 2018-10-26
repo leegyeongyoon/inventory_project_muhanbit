@@ -55,7 +55,7 @@ a {
                  Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_control_muhanbit_db",
                        "root", "muhanbit");
                  
-                 String inventorystatesql = "SELECT * INTO OUTFILE 'C:/Temp/inventorystate.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n' FROM inventory_tbl";
+                 String inventorystatesql = "SELECT * INTO OUTFILE 'C:/Temp/inventorystate.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n' FROM inventory_tbl order by input_date DESC";
                  String inventorylistsql = "SELECT * INTO OUTFILE 'C:/Temp/inventorylist.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n' FROM inventory_list_tbl";
                  String deliversql = "SELECT * INTO OUTFILE 'C:/Temp/deliverlist.csv' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n' FROM deliver_serial_tbl";
                  out.println();
