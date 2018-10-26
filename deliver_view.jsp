@@ -123,7 +123,7 @@ a:hover {
                  %>
                  </table>
 				 <div class="w3-center">
-                 <ul class="pagination">
+                 <ul class="pagination" style="margin-bottom: 9em;">
                  <%
                  int countPage = 5;
                  int totalPage = totalCount/countList;
