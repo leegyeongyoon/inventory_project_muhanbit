@@ -11,7 +11,7 @@
 
 	String cmdline = "mysqldump -u root -pmuhanbit inventory_control_muhanbit_db >dump.txt";
 	Process exec = Runtime.getRuntime().exec(new String[]{"cmd.exe","/c","mysql -u root -pmuhanbit inventory_control_muhanbit_db --default-character-set utf8 < C:/dump.txt"});
-	out.println("<script>alert(복구 완료 !!!! ) location.href='index.jsp';</script>");
+	out.println("<script>alert('복구 완료 !!!!'); location.href='index.jsp';</script>");
 }
 	catch(Exception e){
 		
