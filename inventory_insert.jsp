@@ -65,8 +65,7 @@
     <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">시리얼 번호 입력</span>
   </div>
   <div id="serial_number" align="center" style="margin-top: 2em; margin-bottom: 2em;"></div>
-  <input type="button" class="w3-button w3-block w3-black w3-col s6" style="margin-bottom: 3em;" value="등록" onclick="validation_check()">
-    <input type="button" class="w3-button w3-block w3-black w3-col s6" style="margin-bottom: 3em;" value="메인으로" onclick="location.href = 'index.jsp'">
+  <input type="button" class="w3-button w3-block w3-black w3-col s12" style="margin-bottom: 3em;" value="등록" onclick="validation_check()">
   </form>
   <script type="text/javascript" src="validate.js"></script>
   </div>

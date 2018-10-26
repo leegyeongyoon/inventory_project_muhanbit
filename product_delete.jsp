@@ -44,8 +44,7 @@
 			<select name="product_name" id="product_name" class="form-control"></select>
 		</div>
     </div>
-    <input type="submit" class="w3-button w3-block w3-black w3-col s6" style="margin-bottom: 3em;" value="삭제">
-    <input type="button" class="w3-button w3-block w3-black w3-col s6" style="margin-bottom: 3em;" value="메인으로" onclick="location.href = 'index.jsp'">
+    <input type="submit" class="w3-button w3-block w3-black w3-col s12" style="margin-bottom: 3em;" value="삭제">
   </form>
   <script type="text/javascript" src="validate.js"></script>
   </div>

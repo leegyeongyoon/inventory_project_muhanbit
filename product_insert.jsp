@@ -44,8 +44,7 @@
      <label>물건명</label>
       <input type="text" class="w3-input w3-border w3-hover-border-black" style="width:100%;" name="product_name" id="product_name"  maxlength="20">
     </div>
-    <input type="button" class="w3-button w3-block w3-black w3-col s6" style="margin-bottom: 3em;" value="등록" onclick="product_insert_validation_check()">
-    <input type="button" class="w3-button w3-block w3-black w3-col s6" style="margin-bottom: 3em;" value="메인으로" onclick="location.href = 'index.jsp'">
+    <input type="button" class="w3-button w3-block w3-black w3-col s12" style="margin-bottom: 3em;" value="등록" onclick="product_insert_validation_check()">
   </form>
   <script type="text/javascript" src="validate.js"></script>
   </div>
