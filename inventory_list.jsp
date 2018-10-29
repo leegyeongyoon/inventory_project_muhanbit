@@ -50,7 +50,7 @@ a:hover {
 				<th style="text-align: center;">재고량</th>
 				<th style="text-align: center;">납품량</th>
 				<th style="text-align: center;">입고일</th>
-				<th style="text-align: center;">출고일</th>
+				<th style="text-align: center;">납품일</th>
 				<th style="text-align: center;">납품회사</th>
 				<th style="text-align: center;">시리얼 보기</th>
 			</tr>

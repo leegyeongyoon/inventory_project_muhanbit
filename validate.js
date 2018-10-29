@@ -275,17 +275,7 @@
 	
 		}
 	}
-			
-			function findproname(check) {
-				createHttpRequest();
-				xhttp.onreadystatechange = callFunction;
-				var req = "day.jsp?category=" + check.value;
-				xhttp.open("GET", req, true);
-				xhttp.send(null);
-			}
-			
-			
-			
+					
 			
 			function inventory_list() {
 				var inventory_num = document.getElementById("inventory").value;

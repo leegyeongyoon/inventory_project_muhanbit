@@ -48,7 +48,7 @@ a:hover {
 				<th style="text-align: center;">물건명</th>
 				<th style="text-align: center;">시리얼 번호</th>
 				<th style="text-align: center;">입고일</th>
-				<th style="text-align: center;">출고일</th>
+				<th style="text-align: center;">납품일</th>
 				<th style="text-align: center;">납품 회사</th>
 				
 			</tr>
