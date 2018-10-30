@@ -1,5 +1,6 @@
 	var xhttp;
 	var reinventory_count =0;
+	var getttttt = new Array() ;
 	function createHttpRequest() {
 		xhttp = new XMLHttpRequest();
 	}
@@ -38,7 +39,7 @@
 		}
 	}
 	
-	/*function inventory_list() {
+/*	function inventory_list() {
 		alert(reinventory_count);
 		var inventory_num = document.getElementById("inventory").value;
 		var inventory = new Array();
@@ -61,14 +62,15 @@
 		else if ((inventory_num-reinventory_count) < 0){
 			for (var i = reinventory_count; i >=inventory_num ; i--) {
 				$("input[name='inventory[" + i + "]']").remove();
-				if (i % 5 == 4) {
+				if (i % 4 == 0) {
 					document.getElementById("serial_number").innerHTML += "<br>"
 				}
 			}
 		}
 		
 		reinventory_count = inventory_num = document.getElementById("inventory").value;
-	}*/
+	}
+	*/
 	
 	function validation_check() {
 		var inventory_num = document.getElementById("inventory").value
@@ -278,27 +280,53 @@
 					
 			
 			function inventory_list() {
-				var inventory_num = document.getElementById("inventory").value;
+			
+				
+				var inventory_num = parseInt(document.getElementById("inventory").value);
 				var inventory = new Array();
-				var getttttt = new Array() ;
+				
+				
+				
+					
+					if(reinventory_count != 0){
+						for(var i= 0 ; i<reinventory_count ; i++){
+							
+							getttttt[i] = document.getElementById("inventory["+i+"]").value;
+							
+						}
+					}
 				if (inventory_num > 1000 || inventory_num <= -1) {
 					alert('재고량은 1개부터 1000개까지 입력이 가능합니다.');
 					document.getElementById("inventory").focus();
 					return;
 				}
 				
-				//document.getElementById("serial_number").innerHTML = null;
+				document.getElementById("serial_number").innerHTML = null;
 			
 				for (var i = 0; i < inventory_num; i++) {
 					
 					
 					document.getElementById("serial_number").innerHTML += "<input type='text' class='inventory'  name='inventory["
-							+ i + "]' style='margin-right: 10px; margin-bottom:5px;'>";
+							+ i + "]' id='inventory["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'>";
+					
 					if (i % 5 == 4) {
 						document.getElementById("serial_number").innerHTML += "<br>"
 					}
 				}
-			
+				if(inventory_num >= reinventory_count){
+					
+				for(var i=0  ; i < reinventory_count; i++){
+					document.getElementById("inventory["+i+"]").value = getttttt[i];
+					
+				}
+				}
+				
+				else if (inventory_num < reinventory_count){
+					for(var i=0  ; i < inventory_num; i++){
+						document.getElementById("inventory["+i+"]").value = getttttt[i];
+					}
+				}
+				reinventory_count  = document.getElementById("inventory").value;
 			}
 			
 		
