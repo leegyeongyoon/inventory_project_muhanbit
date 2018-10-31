@@ -20,7 +20,7 @@
 <body>
 	<div class="w3-bar w3-white w3-border-bottom w3-xlarge">
 	  <a href="index.jsp" class="w3-bar-item w3-button w3-text-black w3-hover-gray"><b>MuhanBit</b></a>
-	  <a href="index.jsp?section=search_form.jsp" class="w3-right w3-hover-gray w3-text-grey"><i class="fa fa-search"></i></a>
+	  <a href="index.jsp?section=search_form.jsp" class="w3-bar-item w3-button w3-right w3-hover-gray w3-text-grey"><i class="fa fa-search"></i></a>
 	</div>
 </body>
 </html>
