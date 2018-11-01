@@ -240,10 +240,12 @@
 		else {
 	
 			var deliver = document.getElementsByName("deliver");
+			var mac_address = document.getElementsByName("mac_address");
 	
 			for (var i = 0; i < deliver.length; i++) {
 				if (deliver[i].checked == false) {
 					document.getElementById(deliver[i].value).disabled = true;
+				    document.getElementById(mac_address[i].value).disabled = true;
 				}
 			}
 	

@@ -13,10 +13,13 @@
 		response.setCharacterEncoding("utf-8");
 		request.setCharacterEncoding("utf-8");
 		String[] input_date = request.getParameterValues("input_date");
+		String[] mac_address = request.getParameterValues("mac_address");
+		
+		
 		String[] distinct_input_date = new HashSet<String>(Arrays.asList(input_date)).toArray(new String[0]);
 		String deliver[] = request.getParameterValues("deliver");
 		int[] count = new int[distinct_input_date.length];
-		String insert_data = "INSERT INTO deliver_serial_tbl(product_name , serial_number,input_date,output_date,company) VALUES ";
+		String insert_data = "INSERT INTO deliver_serial_tbl(product_name , serial_number,mac_address,input_date,output_date,company) VALUES ";
 		String delete_data = "delete from inventory_tbl where ";
 		String output_date = request.getParameter("output_date");
 		String company = request.getParameter("company");
@@ -53,19 +56,20 @@
 		pstmt=conn.prepareStatement(delete_data.substring(0, delete_data.length() - 2));
 		for(int i=0; i<deliver.length;i++){
 			pstmt.setString(i+1, deliver[i]);
-			insert_data += "(?,?,?,?,?),";
+			insert_data += "(?,?,?,?,?,?),";
 		}
 		pstmt.executeUpdate();
-			System.out.println(insert_data);
+			
 		pstmt=conn.prepareStatement(insert_data.substring(0, insert_data.length() - 1));
 		for(int i=0 ; i<deliver.length ; i++){
 			pstmt.setString(i + 1 + k, product_name);
 			pstmt.setString(i + 2 + k, deliver[i]);
-			pstmt.setString(i + 3 + k, input_date[i]);
-			pstmt.setString(i + 4 + k, output_date);
-			pstmt.setString(i + 5 + k, company);
+			pstmt.setString(i + 3 + k, mac_address[i]);
+			pstmt.setString(i + 4 + k, input_date[i]);
+			pstmt.setString(i + 5 + k, output_date);
+			pstmt.setString(i + 6 + k, company);
 		
-			k += 4;
+			k += 5;
 			
 		}
 		k = 0;

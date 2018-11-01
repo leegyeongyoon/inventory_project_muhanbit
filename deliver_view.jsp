@@ -47,6 +47,7 @@ a:hover {
 				<th style="text-align: center;">번호</th>
 				<th style="text-align: center;">물건명</th>
 				<th style="text-align: center;">시리얼 번호</th>
+				<th style="text-align: center;">MacAddress</th>
 				<th style="text-align: center;">입고일</th>
 				<th style="text-align: center;">납품일</th>
 				<th style="text-align: center;">납품 회사</th>
@@ -82,7 +83,7 @@ a:hover {
                 
                 int countList = 10; // 한 페이지에 보여줄 글 수
 				
-                String listSql = "SELECT product_name , serial_number,input_date,output_date,company FROM deliver_serial_tbl WHERE product_name = ? AND input_date = ? order by company , serial_number LIMIT ?, ?";
+                String listSql = "SELECT product_name , serial_number,mac_address,input_date,output_date,company FROM deliver_serial_tbl WHERE product_name = ? AND input_date = ? order by company , serial_number LIMIT ?, ?";
                 PreparedStatement liststem = conn.prepareStatement(listSql);
                 liststem.setString(1, req_product_name);
                 liststem.setString(2, input_date);
@@ -100,9 +101,10 @@ a:hover {
                 while (listrs.next()) {
 					String product_name= listrs.getString(1);
 					String serial_number = listrs.getString(2);
-					String input_date_sel = listrs.getString(3);
-					String output_date_sel = listrs.getString(4);
-					String company= listrs.getString(5);
+					String mac_address = listrs.getString(3);
+					String input_date_sel = listrs.getString(4);
+					String output_date_sel = listrs.getString(5);
+					String company= listrs.getString(6);
 				
 					
 			%>
@@ -110,6 +112,7 @@ a:hover {
 				<td><%=score-k%></td>
 				<td><%=product_name%></td>
 				<td><%=serial_number%></td>
+				<td><%=mac_address%></td>
 				<td><%=input_date_sel%></td>
 				<td><%=output_date_sel%></td>
 				<td><%=company%></td>

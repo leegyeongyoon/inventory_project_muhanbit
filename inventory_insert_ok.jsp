@@ -15,7 +15,7 @@
 		response.setCharacterEncoding("utf-8");
 		request.setCharacterEncoding("utf-8");
 		PreparedStatement pstmt = null;
-		String insert_data = "INSERT INTO inventory_tbl VALUES ";
+		String insert_data = "INSERT INTO inventory_tbl(product_name,serial_number,mac_address,input_date,other_information) VALUES ";
 		String category = request.getParameter("category");
 		String product_name = request.getParameter("product_name");
 		String input_date = request.getParameter("input_date");
@@ -27,17 +27,19 @@
 		
 		
 		for (int i = 0; i < inventory; i++) {
-			insert_data += "(?,?,?,?),";
+			insert_data += "(?,?,?,?,?),";
 		}
-		System.out.println(insert_data);
+	
 		pstmt = conn.prepareStatement(insert_data.substring(0, insert_data.length() - 1));
 		for (int i = 0; i < inventory; i++) {
 			String serial_number = request.getParameter("inventory[" + i + "]");
+			String mac_address = request.getParameter("mac_address[" + i + "]");
 			pstmt.setString(i + 1 + j, product_name);
 			pstmt.setString(i + 2 + j, serial_number);
-			pstmt.setString(i + 3 + j, input_date);
-			pstmt.setString(i + 4 + j, other_information);
-			j += 3;
+			pstmt.setString(i + 3 + j, mac_address);
+			pstmt.setString(i + 4 + j, input_date);
+			pstmt.setString(i + 5 + j, other_information);
+			j += 4;
 			
 		}
 		j = 0;
