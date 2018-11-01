@@ -14,7 +14,11 @@ $(document).ready(function(){
     $("#mac_disable").click(function(){
     	var maclenth = parseInt($('#inventory').val());
     	for(var i = 0; i < maclenth; i++){
+    		if(document.getElementById("mac_address["+i+"]").disabled == true){
+    		document.getElementById("mac_address["+i+"]").disabled = false;
+    	}else{
     		document.getElementById("mac_address["+i+"]").disabled = true;
+    	}
     	}
        });
     })
