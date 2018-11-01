@@ -313,19 +313,19 @@
 					if(i%3==0){
 						
 					createtable += "<tr><td><input type='text' class='inventory'  name='inventory["
-							+ i + "]' id='inventory["+ i + "]'></td><td><input type='text' class='mac_address'  name='mac_address["
-							+ i + "]' id='mac_address["+ i + "]' ></td>";
+							+ i + "]' id='inventory["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td><td><input type='text' class='mac_address'  name='mac_address["
+							+ i + "]' id='mac_address["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td>";
 					}
 					else if(i%3 != 0 && i % 3 != 2){
 						
 						createtable += "<td><input type='text' class='inventory'  name='inventory["
-							+ i + "]' id='inventory["+ i + "]'  ></td><td><input type='text' class='mac_address'  name='mac_address["
-							+ i + "]' id='mac_address["+ i + "]' ></td>";
+							+ i + "]' id='inventory["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td><td><input type='text' class='mac_address'  name='mac_address["
+							+ i + "]' id='mac_address["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td>";
 					}
 					else if (i % 3 == 2) {
 						createtable += "<td><input type='text' class='inventory'  name='inventory["
-							+ i + "]' id='inventory["+ i + "]' ></td><td><input type='text' class='mac_address'  name='mac_address["
-							+ i + "]' id='mac_address["+ i + "]' ></td></tr>";
+							+ i + "]' id='inventory["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td><td><input type='text' class='mac_address'  name='mac_address["
+							+ i + "]' id='mac_address["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td></tr>";
 						
 					}
 					
