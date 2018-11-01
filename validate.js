@@ -312,19 +312,19 @@
 					
 					if(i%3==0){
 						
-					createtable += "<tr><td width='150px'><input type='text'  style ='width:150px;' class='inventory'  name='inventory["
-							+ i + "]' id='inventory["+ i + "]'></td><td width='150px'><input type='text' class='mac_address' style ='width:150px;' name='mac_address["
+					createtable += "<tr><td width='150px'><input type='text'  autocomplete='off'  style ='width:150px;' class='inventory'  name='inventory["
+							+ i + "]' id='inventory["+ i + "]'></td><td width='150px'><input type='text' autocomplete='off' class='mac_address' style ='width:150px;' name='mac_address["
 							+ i + "]' id='mac_address["+ i + "]' ></td>";
 					}
 					else if(i%3 != 0 && i % 3 != 2){
 						
-						createtable += "<td width='150px'><input type='text' class='inventory' style ='width:150px;' name='inventory["
-							+ i + "]' id='inventory["+ i + "]'  ></td><td width='150px'><input type='text' style ='width:150px;' class='mac_address'  name='mac_address["
+						createtable += "<td width='150px'><input type='text' autocomplete='off' class='inventory' style ='width:150px;' name='inventory["
+							+ i + "]' id='inventory["+ i + "]'  ></td><td width='150px'><input type='text' autocomplete='off' style ='width:150px;' class='mac_address'  name='mac_address["
 							+ i + "]' id='mac_address["+ i + "]' ></td>";
 					}
 					else if (i % 3 == 2) {
-						createtable += "<td width='150px'><input type='text' class='inventory' style ='width:150px;' name='inventory["
-							+ i + "]' id='inventory["+ i + "]' ></td><td width='150px'><input type='text'style ='width:150px;' class='mac_address'  name='mac_address["
+						createtable += "<td width='150px'><input type='text' autocomplete='off' class='inventory' style ='width:150px;' name='inventory["
+							+ i + "]' id='inventory["+ i + "]' ></td><td width='150px'><input type='text' autocomplete='off' style ='width:150px;' class='mac_address'  name='mac_address["
 							+ i + "]' id='mac_address["+ i + "]' ></td></tr>";
 						
 					}

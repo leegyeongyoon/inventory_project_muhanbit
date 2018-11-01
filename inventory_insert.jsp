@@ -73,7 +73,7 @@ $(document).ready(function(){
     </div>
    <div class="w3-section">
      <label>기타사항</label>
-      <input type="text" class="w3-input w3-border w3-hover-border-black" style="width:100%;" name="other_information" id="other_information" maxlength="50">
+      <input type="text"  autocomplete="off" class="w3-input w3-border w3-hover-border-black" style="width:100%;" name="other_information" id="other_information" maxlength="50">
     </div>
   <div class="w3-center w3-padding-10 w3-maring-10" id="contact" style="margin-bottom: 3em;">
     <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">시리얼 번호 입력</span>
