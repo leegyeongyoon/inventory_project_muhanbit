@@ -312,20 +312,20 @@
 					
 					if(i%3==0){
 						
-					createtable += "<tr><td><input type='text' class='inventory'  name='inventory["
-							+ i + "]' id='inventory["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td><td><input type='text' class='mac_address'  name='mac_address["
-							+ i + "]' id='mac_address["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td>";
+					createtable += "<tr><td width='150px'><input type='text'  style ='width:150px;' class='inventory'  name='inventory["
+							+ i + "]' id='inventory["+ i + "]'></td><td width='150px'><input type='text' class='mac_address' style ='width:150px;' name='mac_address["
+							+ i + "]' id='mac_address["+ i + "]' ></td>";
 					}
 					else if(i%3 != 0 && i % 3 != 2){
 						
-						createtable += "<td><input type='text' class='inventory'  name='inventory["
-							+ i + "]' id='inventory["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td><td><input type='text' class='mac_address'  name='mac_address["
-							+ i + "]' id='mac_address["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td>";
+						createtable += "<td width='150px'><input type='text' class='inventory' style ='width:150px;' name='inventory["
+							+ i + "]' id='inventory["+ i + "]'  ></td><td width='150px'><input type='text' style ='width:150px;' class='mac_address'  name='mac_address["
+							+ i + "]' id='mac_address["+ i + "]' ></td>";
 					}
 					else if (i % 3 == 2) {
-						createtable += "<td><input type='text' class='inventory'  name='inventory["
-							+ i + "]' id='inventory["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td><td><input type='text' class='mac_address'  name='mac_address["
-							+ i + "]' id='mac_address["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td></tr>";
+						createtable += "<td width='150px'><input type='text' class='inventory' style ='width:150px;' name='inventory["
+							+ i + "]' id='inventory["+ i + "]' ></td><td width='150px'><input type='text'style ='width:150px;' class='mac_address'  name='mac_address["
+							+ i + "]' id='mac_address["+ i + "]' ></td></tr>";
 						
 					}
 					
