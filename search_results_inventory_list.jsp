@@ -75,13 +75,13 @@ table, th, tr, td {
                     searchlist = "deliver";
                     break;
                 case "4":
-                    searchlist = "input_date";
+                    searchlist = "company";
                     break;
                 case "5":
-                    searchlist = "output_date";
+                	searchlist = "input_date";
                     break;
                 case "6":
-                    searchlist = "company";
+                	 searchlist = "output_date";
                     break;
 				}
 				
@@ -126,7 +126,7 @@ table, th, tr, td {
 		         <tr>
 		            <td><%=product_name%></td>
 	                <td><%=inventory%></td>
-	                <td><%=deliver%></td>
+	                <td><%=deliver%></td>                
 	                <td><%=input_date%></td>
 	                <td><%=output_date%></td>
 	                <td><%=company%></td>

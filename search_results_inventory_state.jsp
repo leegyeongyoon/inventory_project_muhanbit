@@ -50,6 +50,7 @@ table, th, tr, td {
 			<tr>
 				<th>물건 이름</th>
 				<th>시리얼넘버</th>
+				<th>MacAddress</th>
 				<th>입고일</th>
 				<th>기타사항</th>
 			</tr>
@@ -73,6 +74,9 @@ table, th, tr, td {
 					searchlist = "other_information";
 					break;
 				case "4":
+					searchlist = "mac_address";
+					break;
+				case "5":
 					searchlist = "input_date";
 					break;
 				}
@@ -98,7 +102,7 @@ table, th, tr, td {
 		            }// 만약 현재 페이지에 값이 들어가서 넘어온다면 현재 페이지를 그 페이지로 설정해준다.
 		            
 		            int countList = 10; // 한 페이지에 보여줄 글 수
-		            String listSql = "SELECT product_name, serial_number, input_date, other_information from inventory_tbl WHERE "
+		            String listSql = "SELECT product_name, serial_number, input_date, other_information, mac_address from inventory_tbl WHERE "
 	                        + searchlist + " like '%" + searchdate + "%' order by 3 desc, 2 LIMIT ?, ?";
 		            PreparedStatement liststem = conn.prepareStatement(listSql);
 		            liststem.setInt(1,(currentPage-1)*countList);
@@ -112,10 +116,12 @@ table, th, tr, td {
 		            	String serial_number = listrs.getString(2);
 		            	String input_date = listrs.getString(3);
 		            	String other_information = listrs.getString(4);
+		            	String mac_address = listrs.getString(5);
 		         %>
 		         <tr>
 		            <td><%=product_name%></td>
 					<td><%=serial_number%></td>
+					<td><%=mac_address%></td>
 					<td><%=input_date%></td>
 					<td><%=other_information%></td>
 		         </tr>
