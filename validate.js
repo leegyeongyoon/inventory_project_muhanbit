@@ -1,6 +1,7 @@
 	var xhttp;
 	var reinventory_count =0;
 	var getttttt = new Array() ;
+	var macget = new Array();
 	function createHttpRequest() {
 		xhttp = new XMLHttpRequest();
 	}
@@ -284,7 +285,8 @@
 				
 				var inventory_num = parseInt(document.getElementById("inventory").value);
 				var inventory = new Array();
-				
+				var mac_address = new Array();
+				var createtable = "";
 				
 				
 					
@@ -292,6 +294,7 @@
 						for(var i= 0 ; i<reinventory_count ; i++){
 							
 							getttttt[i] = document.getElementById("inventory["+i+"]").value;
+							macget[i] = document.getElementById("mac_address["+i+"]").value;
 							
 						}
 					}
@@ -305,25 +308,39 @@
 			
 				for (var i = 0; i < inventory_num; i++) {
 					
-					
-					document.getElementById("serial_number").innerHTML += "<input type='text' class='inventory'  name='inventory["
-							+ i + "]' id='inventory["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'>";
-					
-					if (i % 5 == 4) {
-						document.getElementById("serial_number").innerHTML += "<br>"
+					if(i%3==0){
+						
+					createtable += "<tr><td><input type='text' class='inventory'  name='inventory["
+							+ i + "]' id='inventory["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td><td><input type='text' class='mac_address'  name='mac_address["
+							+ i + "]' id='mac_address["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td>";
 					}
+					else if(i%3 != 0 && i % 3 != 2){
+						
+						createtable += "<td><input type='text' class='inventory'  name='inventory["
+							+ i + "]' id='inventory["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td><td><input type='text' class='mac_address'  name='mac_address["
+							+ i + "]' id='mac_address["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td>";
+					}
+					else if (i % 3 == 2) {
+						createtable += "<td><input type='text' class='inventory'  name='inventory["
+							+ i + "]' id='inventory["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td><td><input type='text' class='mac_address'  name='mac_address["
+							+ i + "]' id='mac_address["+ i + "]'  style='margin-right: 10px; margin-bottom:5px;'></td></tr>";
+						
+					}
+					
 				}
+				document.getElementById("serial_number").innerHTML 	= createtable;
 				if(inventory_num >= reinventory_count){
 					
 				for(var i=0  ; i < reinventory_count; i++){
 					document.getElementById("inventory["+i+"]").value = getttttt[i];
-					
+					document.getElementById("mac_address["+i+"]").value = macget[i];
 				}
 				}
 				
 				else if (inventory_num < reinventory_count){
 					for(var i=0  ; i < inventory_num; i++){
 						document.getElementById("inventory["+i+"]").value = getttttt[i];
+						document.getElementById("mac_address["+i+"]").value = macget[i];
 					}
 				}
 				reinventory_count  = document.getElementById("inventory").value;
