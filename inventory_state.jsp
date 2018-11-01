@@ -86,6 +86,7 @@ table, tr, th, td {text-align: center;}
       <th style="text-align: center;">카테고리</th>
       <th style="text-align: center;">물건명</th>
       <th style="text-align: center;">시리얼번호</th>
+      <th style="text-align: center;">MacAddress</th>
       <th style="text-align: center;">입고일</th>
       <th style="text-align: center;">기타사항</th>
       </tr>
