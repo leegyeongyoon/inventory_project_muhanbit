@@ -411,10 +411,10 @@
 			function search_data_selete() {
 				var first_selete = document.getElementById("second_selete").value;
 				if(first_selete == "5" || first_selete == "6"){
-					document.getElementById("search_data_input").innerHTML = "<input class='w3-input w3-border w3-hover-border-black'style='width: 100%;' type='date' name='search'>";
+					document.getElementById("search_data_input").innerHTML = "<input autocomplete='off' class='w3-input w3-border w3-hover-border-black'style='width: 100%;' type='date' name='search'>";
 														
 				}else if(first_selete != "5" && first_selete != "6"){
-					document.getElementById("search_data_input").innerHTML = "<input class='w3-input w3-border w3-hover-border-black'style='width: 100%;' type='text' name='search'>"
+					document.getElementById("search_data_input").innerHTML = "<input autocomplete='off' class='w3-input w3-border w3-hover-border-black'style='width: 100%;' type='text' name='search'>"
 				}else{
 					document.getElementById("search_data_input").innerHTML = null;
 					
