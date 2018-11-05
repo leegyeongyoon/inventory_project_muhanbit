@@ -7,6 +7,9 @@
 	if (i.substring(0, 9).equals("Duplicate")) {
 		out.print("<script>alert('중복되는 값이 입력되었습니다. 데이터를 다시 입력해주세요'); history.back(-1);</script>");
 	} 
+	else if(i.substring(0, 16).equals("Unknown database")){
+		out.print("<script>alert('데이터베이스가 없습니다. 데이터베이스까지 복구하는 백업을 받으시기바랍니다..'); history.back(-1);</script>");
+	}
 	else if(i.substring(0, 51).equals("Cannot delete or update a parent row: a foreign key")){
 		out.print("<script>alert('데이터가 있는 장비는 삭제 하실 수 없습니다.'); history.back(-1);</script>");
 	}
@@ -18,6 +21,10 @@
 	else if(i.substring(0,37).equals("Data truncation: Incorrect date value")){
 		out.print("<script>alert('날짜가 너무 말도안됩니다!!!!!'); history.back(-1);</script>");
 	}
+	
+	else if(i.substring(55,70).equals("database exists")){
+		out.print("<script>alert('데이터베이스가 이미 있으니 데이터만 복구해주세요'); history.back(-1);</script>");
+	}
 	else {
 %>
 <script>
@@ -27,8 +34,6 @@
 <%
 	}
 %>
-
-
-
+ 
 
 
