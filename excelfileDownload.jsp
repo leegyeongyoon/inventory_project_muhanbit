@@ -11,6 +11,8 @@
 </head>
  
 <%
+	response.setCharacterEncoding("utf-8");
+	request.setCharacterEncoding("utf-8");
     // a태그의 href로 fileDown1.jsp?file_name="<%=fileName1 을 통해 전달한
     // 중복 방지 처리한 파일명 값을 가져온다.
     String fileName = request.getParameter("file_name");
@@ -54,6 +56,7 @@
      
     // 업로드 파일의 제목이 깨질 수 있으므로 인코딩을 해준다.
     String sEncoding = new String(fileName.getBytes("utf-8"),"8859_1");
+     
     //String B = "utf-8";
     //String sEncoding = URLEncoder.encode(A,B);
      

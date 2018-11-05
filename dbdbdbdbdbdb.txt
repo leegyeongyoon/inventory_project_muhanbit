@@ -27,7 +27,8 @@ CREATE TABLE inventory_tbl
      `mac_address`      VARCHAR(50)      NULL    COMMENT 'macaddress', 
     `input_date`         DATE            NOT NULL    COMMENT '입고일', 
     `other_information`  VARCHAR(200)    NULL        COMMENT '기타사항', 
-    PRIMARY KEY (serial_number)
+    PRIMARY KEY (serial_number),
+    UNIQUE KEY (product_name)
 );
 
 ALTER TABLE inventory_tbl COMMENT '재고 테이블';
@@ -47,8 +48,8 @@ CREATE TABLE inventory_list_tbl
     `inventory`          INT          DEFAULT '0'   NULL    COMMENT '입고량', 
     `deliver`          INT             DEFAULT '0'   NULL    COMMENT '납품량',
     `input_date`         DATE            NULL        COMMENT '입고일',
-    `output_date`        VARCHAR(600)      DEFAULT ''      NULL        COMMENT '납품일',
-    `company`        VARCHAR(200)      DEFAULT ''      NULL        COMMENT '납품회사',
+    `output_date`        VARCHAR(1000)      DEFAULT ''      NULL        COMMENT '납품일',
+    `company`        VARCHAR(1000)      DEFAULT ''      NULL        COMMENT '납품회사',
   PRIMARY KEY (seq)
 );
 

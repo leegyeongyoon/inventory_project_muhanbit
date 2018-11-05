@@ -10,8 +10,9 @@
 	else if(i.substring(0, 51).equals("Cannot delete or update a parent row: a foreign key")){
 		out.print("<script>alert('데이터가 있는 장비는 삭제 하실 수 없습니다.'); history.back(-1);</script>");
 	}
-	else if(i.equals("Data truncation: Data too long for column 'serial_number' at row 1")){
-		out.print("<script>alert('시리얼번호가 너무 깁니다.'); history.back(-1);</script>");
+	
+	else if(i.substring(0,41).equals("Data truncation: Data too long for column")){
+		out.print("<script>alert('데이터가가 너무 깁니다.'); history.back(-1);</script>");
 	}
 	else {
 %>
