@@ -14,6 +14,10 @@
 	else if(i.substring(0,41).equals("Data truncation: Data too long for column")){
 		out.print("<script>alert('데이터가가 너무 깁니다.'); history.back(-1);</script>");
 	}
+	
+	else if(i.substring(0,37).equals("Data truncation: Incorrect date value")){
+		out.print("<script>alert('날짜가 너무 말도안됩니다!!!!!'); history.back(-1);</script>");
+	}
 	else {
 %>
 <script>
