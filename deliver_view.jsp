@@ -83,7 +83,7 @@ a:hover {
                 
                 int countList = 10; // 한 페이지에 보여줄 글 수
 				
-                String listSql = "SELECT product_name , serial_number,mac_address,input_date,output_date,company FROM deliver_serial_tbl WHERE product_name = ? AND input_date = ? order by company , serial_number LIMIT ?, ?";
+                String listSql = "SELECT product_name , serial_number,mac_address,input_date,output_date,company FROM deliver_serial_tbl WHERE product_name = ? AND input_date = ? order by output_date desc , serial_number LIMIT ?, ?";
                 PreparedStatement liststem = conn.prepareStatement(listSql);
                 liststem.setString(1, req_product_name);
                 liststem.setString(2, input_date);

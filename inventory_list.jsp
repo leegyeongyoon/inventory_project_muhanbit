@@ -78,7 +78,7 @@ a:hover {
             
             int countList = 10; // 한 페이지에 보여줄 글 수
             
-            String listSql = "SELECT p.category,i.product_name ,   SUM(i.inventory) ,i.input_date  AS input_date , i.output_date , deliver,company FROM product_tbl p INNER JOIN inventory_list_tbl i ON p.product_name =  i.product_name GROUP BY input_date,i.product_name, output_date ORDER BY seq DESC LIMIT ?, ?";
+            String listSql = "SELECT p.category,i.product_name ,   SUM(i.inventory) ,i.input_date  AS input_date , i.output_date , deliver,company FROM product_tbl p INNER JOIN inventory_list_tbl i ON p.product_name =  i.product_name GROUP BY input_date,i.product_name, output_date ORDER BY input_date DESC LIMIT ?, ?";
             PreparedStatement liststem = conn.prepareStatement(listSql);
             liststem.setInt(1,(currentPage-1)*countList);
             liststem.setInt(2, countList);
