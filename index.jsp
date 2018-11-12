@@ -5,7 +5,7 @@
 	response.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html>
-<html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MuhanBit</title>
@@ -39,7 +39,7 @@ tylesheet"href="https://fonts.googleapis.com/css?family=Lato">
 	}
 	</style>
 </head>
-<body style="height: 0;">
+<body style="height: 0;"> 
 	<nav>
 		<jsp:include page="main_nav.jsp" />
 	</nav>
