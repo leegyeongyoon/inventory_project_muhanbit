@@ -1,6 +1,7 @@
+create database inventory_control_muhanbit_db;
 use inventory_control_muhanbit_db;
 
--- Å×ÀÌºí ¼ø¼­´Â °ü°è¸¦ °í·ÁÇÏ¿© ÇÑ ¹ø¿¡ ½ÇÇàÇØµµ ¿¡·¯°¡ ¹ß»ıÇÏÁö ¾Ê°Ô Á¤·ÄµÇ¾ú½À´Ï´Ù.
+-- í…Œì´ë¸” ìˆœì„œëŠ” ê´€ê³„ë¥¼ ê³ ë ¤í•˜ì—¬ í•œ ë²ˆì— ì‹¤í–‰í•´ë„ ì—ëŸ¬ê°€ ë°œìƒí•˜ì§€ ì•Šê²Œ ì •ë ¬ë˜ì—ˆìŠµë‹ˆë‹¤.
 drop table inventory_list_tbl;
 drop table inventory_tbl;
 drop table product_tbl;
@@ -11,27 +12,26 @@ drop table deliver_serial_tbl;
 -- product_tbl Table Create SQL
 CREATE TABLE product_tbl
 (
-    `category`      VARCHAR(50)    NOT NULL    COMMENT 'Ä«Å×°í¸®', 
-    `product_name`  VARCHAR(50)    NOT NULL    COMMENT '¹°°ÇÀÌ¸§',
+    `category`      VARCHAR(50)    NOT NULL    COMMENT 'ì¹´í…Œê³ ë¦¬', 
+    `product_name`  VARCHAR(50)    NOT NULL    COMMENT 'ë¬¼ê±´ì´ë¦„',
 UNIQUE KEY (product_name)
 );
 
-ALTER TABLE product_tbl COMMENT '¹°Ç°';
+ALTER TABLE product_tbl COMMENT 'ë¬¼í’ˆ';
 
 
 -- inventory_tbl Table Create SQL
 CREATE TABLE inventory_tbl
 (
-    `product_name`       VARCHAR(50)     NOT NULL    COMMENT '¹°°ÇÀÌ¸§', 
-    `serial_number`      VARCHAR(50)     NOT NULL    COMMENT '½Ã¸®¾ó³Ñ¹ö',
+    `product_name`       VARCHAR(50)     NOT NULL    COMMENT 'ë¬¼ê±´ì´ë¦„', 
+    `serial_number`      VARCHAR(50)     NOT NULL    COMMENT 'ì‹œë¦¬ì–¼ë„˜ë²„',
      `mac_address`      VARCHAR(50)      NULL    COMMENT 'macaddress', 
-    `input_date`         DATE            NOT NULL    COMMENT 'ÀÔ°íÀÏ', 
-    `other_information`  VARCHAR(200)    NULL        COMMENT '±âÅ¸»çÇ×', 
-    PRIMARY KEY (serial_number),
-    UNIQUE KEY (product_name)
+    `input_date`         DATE            NOT NULL    COMMENT 'ì…ê³ ì¼', 
+    `other_information`  VARCHAR(200)    NULL        COMMENT 'ê¸°íƒ€ì‚¬í•­', 
+    PRIMARY KEY (serial_number)
 );
 
-ALTER TABLE inventory_tbl COMMENT 'Àç°í Å×ÀÌºí';
+ALTER TABLE inventory_tbl COMMENT 'ì¬ê³  í…Œì´ë¸”';
 
 ALTER TABLE inventory_tbl
 ADD CONSTRAINT FK_inventory_tbl_product_name_product_tbl_product_name
@@ -44,16 +44,16 @@ ON DELETE cascade ON UPDATE cascade;
 CREATE TABLE inventory_list_tbl
 (
     `seq`           INT            NOT NULL    AUTO_INCREMENT COMMENT 'seq',
-    `product_name`       VARCHAR(50)     NOT NULL    COMMENT '¹°°ÇÀÌ¸§', 
-    `inventory`          INT          DEFAULT '0'   NULL    COMMENT 'ÀÔ°í·®', 
-    `deliver`          INT             DEFAULT '0'   NULL    COMMENT '³³Ç°·®',
-    `input_date`         DATE            NULL        COMMENT 'ÀÔ°íÀÏ',
-    `output_date`        VARCHAR(1000)      DEFAULT ''      NULL        COMMENT '³³Ç°ÀÏ',
-    `company`        VARCHAR(1000)      DEFAULT ''      NULL        COMMENT '³³Ç°È¸»ç',
+    `product_name`       VARCHAR(50)     NOT NULL    COMMENT 'ë¬¼ê±´ì´ë¦„', 
+    `inventory`          INT          DEFAULT '0'   NULL    COMMENT 'ì…ê³ ëŸ‰', 
+    `deliver`          INT             DEFAULT '0'   NULL    COMMENT 'ë‚©í’ˆëŸ‰',
+    `input_date`         DATE            NULL        COMMENT 'ì…ê³ ì¼',
+    `output_date`        VARCHAR(1000)      DEFAULT ''      NULL        COMMENT 'ë‚©í’ˆì¼',
+    `company`        VARCHAR(1000)      DEFAULT ''      NULL        COMMENT 'ë‚©í’ˆíšŒì‚¬',
   PRIMARY KEY (seq)
 );
 
-ALTER TABLE inventory_list_tbl COMMENT 'Àç°í ³»¿ª Å×ÀÌºí';
+ALTER TABLE inventory_list_tbl COMMENT 'ì¬ê³  ë‚´ì—­ í…Œì´ë¸”';
 
 ALTER TABLE inventory_list_tbl ADD CONSTRAINT FK_inventory_list_tbl_product_name_product_tbl_product_name FOREIGN KEY (product_name)
  REFERENCES product_tbl (product_name)  ON DELETE RESTRICT ON UPDATE RESTRICT;
@@ -63,34 +63,34 @@ ALTER TABLE inventory_list_tbl ADD CONSTRAINT FK_inventory_list_tbl_product_name
 CREATE TABLE deliver_serial_tbl
 (
     `seq`           INT            NOT NULL    AUTO_INCREMENT COMMENT 'seq',
-    `product_name`       VARCHAR(50)     NOT NULL    COMMENT '¹°°ÇÀÌ¸§', 
-    `serial_number`        VARCHAR(200)      DEFAULT ''      NULL        COMMENT '³³Ç°È¸»ç',
+    `product_name`       VARCHAR(50)     NOT NULL    COMMENT 'ë¬¼ê±´ì´ë¦„', 
+    `serial_number`        VARCHAR(200)      DEFAULT ''      NULL        COMMENT 'ë‚©í’ˆíšŒì‚¬',
     `mac_address`      VARCHAR(50)      NULL    COMMENT 'macaddress',
-    `input_date`        DATE            NULL        COMMENT 'ÀÔ°íÀÏ',
-    `output_date`        DATE            NULL        COMMENT '³³Ç°ÀÏ',
-    `company`        VARCHAR(200)      DEFAULT ''      NULL        COMMENT '³³Ç°È¸»ç',   
+    `input_date`        DATE            NULL        COMMENT 'ì…ê³ ì¼',
+    `output_date`        DATE            NULL        COMMENT 'ë‚©í’ˆì¼',
+    `company`        VARCHAR(200)      DEFAULT ''      NULL        COMMENT 'ë‚©í’ˆíšŒì‚¬',   
      PRIMARY KEY (seq)
 );
 
 
 
 
-INSERT INTO PRODUCT_TBL VALUES('¼­¹ö','301A');
-INSERT INTO PRODUCT_TBL VALUES('¼­¹ö','301B');
-INSERT INTO PRODUCT_TBL VALUES('¼­¹ö','301C');
-INSERT INTO PRODUCT_TBL VALUES('¼­¹ö','301D');
-INSERT INTO PRODUCT_TBL VALUES('¼­¹ö','301E');
+INSERT INTO PRODUCT_TBL VALUES('ì„œë²„','301A');
+INSERT INTO PRODUCT_TBL VALUES('ì„œë²„','301B');
+INSERT INTO PRODUCT_TBL VALUES('ì„œë²„','301C');
+INSERT INTO PRODUCT_TBL VALUES('ì„œë²„','301D');
+INSERT INTO PRODUCT_TBL VALUES('ì„œë²„','301E');
 
-INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3001','2018-07-01','µ¥ÀÌÅÍ ÀÎ¼­Æ®');
-INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3002','2018-07-01','µ¥ÀÌÅÍ ÀÎ¼­Æ®');
-INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3003','2018-07-01','µ¥ÀÌÅÍ ÀÎ¼­Æ®');
-INSERT INTO inventory_tbl (product_name,serial_number,input_date,other_information)VALUES('301E','3004','2018-07-01','µ¥ÀÌÅÍ ÀÎ¼­Æ®');
-INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3005','2018-07-01','µ¥ÀÌÅÍ ÀÎ¼­Æ®');
-INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3006','2018-07-01','µ¥ÀÌÅÍ ÀÎ¼­Æ®');
-INSERT INTO inventory_tbl (product_name,serial_number,input_date,other_information)VALUES('301E','3007','2018-07-01','µ¥ÀÌÅÍ ÀÎ¼­Æ®');
-INSERT INTO inventory_tbl (product_name,serial_number,input_date,other_information)VALUES('301E','3008','2018-07-01','µ¥ÀÌÅÍ ÀÎ¼­Æ®');
-INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3009','2018-07-01','µ¥ÀÌÅÍ ÀÎ¼­Æ®');
-INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information)VALUES('301E','30010','2018-07-01','µ¥ÀÌÅÍ ÀÎ¼­Æ®');
+INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3001','2018-07-01','ë°ì´í„° ì¸ì„œíŠ¸');
+INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3002','2018-07-01','ë°ì´í„° ì¸ì„œíŠ¸');
+INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3003','2018-07-01','ë°ì´í„° ì¸ì„œíŠ¸');
+INSERT INTO inventory_tbl (product_name,serial_number,input_date,other_information)VALUES('301E','3004','2018-07-01','ë°ì´í„° ì¸ì„œíŠ¸');
+INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3005','2018-07-01','ë°ì´í„° ì¸ì„œíŠ¸');
+INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3006','2018-07-01','ë°ì´í„° ì¸ì„œíŠ¸');
+INSERT INTO inventory_tbl (product_name,serial_number,input_date,other_information)VALUES('301E','3007','2018-07-01','ë°ì´í„° ì¸ì„œíŠ¸');
+INSERT INTO inventory_tbl (product_name,serial_number,input_date,other_information)VALUES('301E','3008','2018-07-01','ë°ì´í„° ì¸ì„œíŠ¸');
+INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information) VALUES('301E','3009','2018-07-01','ë°ì´í„° ì¸ì„œíŠ¸');
+INSERT INTO inventory_tbl(product_name,serial_number,input_date,other_information)VALUES('301E','30010','2018-07-01','ë°ì´í„° ì¸ì„œíŠ¸');
 
 
 INSERT INTO inventory_list_tbl(product_name,inventory,input_date) VALUES('301E',10,'2018-07-01');
