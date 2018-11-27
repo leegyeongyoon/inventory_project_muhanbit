@@ -4,6 +4,8 @@
 	//200 - 브라우저 처리코드
 	response.setStatus(200);
 	String i = exception.getMessage().trim();
+	
+	
 	if (i.substring(0, 9).equals("Duplicate")) {
 		out.print("<script>alert('중복되는 값이 입력되었습니다. 데이터를 다시 입력해주세요'); history.back(-1);</script>");
 	} 
@@ -22,6 +24,9 @@
 		out.print("<script>alert('날짜가 너무 말도안됩니다!!!!!'); history.back(-1);</script>");
 	}
 	
+	else if(i.substring(i.length()-13, i.length()).equals("doesn't exist")){
+		out.print("<script>alert('테이블이 없습니다.'); history.back(-1);</script>");
+	}
 	else if(i.substring(55,70).equals("database exists")){
 		out.print("<script>alert('데이터베이스가 이미 있으니 데이터만 복구해주세요'); history.back(-1);</script>");
 	}

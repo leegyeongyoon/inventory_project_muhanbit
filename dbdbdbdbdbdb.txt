@@ -14,7 +14,7 @@ CREATE TABLE product_tbl
 (
     `category`      VARCHAR(50)    NOT NULL    COMMENT '카테고리', 
     `product_name`  VARCHAR(50)    NOT NULL    COMMENT '물건이름',
-UNIQUE KEY (product_name)
+	PRIMARY KEY (product_name)
 );
 
 ALTER TABLE product_tbl COMMENT '물품';
