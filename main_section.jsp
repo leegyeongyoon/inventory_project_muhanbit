@@ -60,6 +60,11 @@
       <p>재고 내역 중 어느 특정한 내역을 찾기 위해서 스크롤을 내리실 필요 없이 재고 내역 검색을 통해 키워드에 맞게 입력을 하여 필요한 재고 내역을 쉽고 빠르게 찾을 수 있도록 도와줍니다.</p>
     </div>
   </div>
+  <div style="margin-top: 50px;">
+  	<h1>고객사 관리 프로그램으로 이동하기</h1>
+  	<p>고객사 관리 프로그램으로 이동하실려면 아래의 버튼을 눌러주세요</p>
+  	<button style="background-color: black; color: white; padding: 30px 200px" onclick="location.href='http://192.168.100.125:8080/CMP/index.jsp'">이동하기</button>
+  </div>
   <div class="w3-center w3-padding-64" id="contact">
   </div>
 </div>
